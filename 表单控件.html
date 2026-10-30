@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=deyice-width,initial-scale">
+    <title>表单控件</title>
+<style>
+    label{
+        display:block;
+        padding: 3px;}
+    
+</style>
+</head>
+<body>
+    <h1>邮箱、数字、搜索、电话、链接、日期、滑块、色彩选择+效验等等</h1>
+    <form autocapitalize="on">
+       <label for="">输入电子邮箱：<input type="email"placsholder="email please;"></label>
+       <label for="">数字的约束控件：<input type="number" autofocus required></label>
+       <label for="">滑块1-100:<input type="range" min="0" max="100"></label>
+       <label for="">输入日期:<input type="date" name="" id=""></label>
+       <label for="">输入网址：<input type="ur1" value="http://"></label>
+       <label for="">搜索栏：<input type="search" placeholder="请输入搜索内容"></label>
+       <label for="">数据列表：<input type="text" list="plist"></label>
+       <datalist id="plist">
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+          </datalist>
+          <label for="">只能输入小写<input pattern="{a-z}"></label>
+          <input type="submit" value="提交到百度"formaction+="http://baidu.com">
+    </form>
+    <from oninput="c.value=a.value*b.value">
+        <p>单价（1-10）：<input type="range" id="a" min="1" max="10"></p>
+        <p>单价（1-10）：<input type="range" id="b" min="1" max="10"></p>
+        <p>总价：<output name="c" for="a b"></output></p>
+    </from>
+       <p>只能填2-3个字母，必填：<input type="text"pattern="{A-Z}"></p>
+</body>
+</html>

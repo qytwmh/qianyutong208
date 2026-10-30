@@ -1,0 +1,66 @@
+/* 顶部活动预告 Flex布局1 */
+.activity-flex {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    background: #fff2dc;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+.activity-item {
+    flex: 1;
+    min-width: 240px;
+}
+
+/* 帖子瀑布流Grid布局2 */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.post-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.post-card:hover {
+    transform: scale(1.02);
+}
+.post-text {
+    padding: 18px;
+}
+
+/* 评论区流式布局3 */
+.comment-list {
+    margin-top: 60px;
+}
+.comment-item {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #8c2323;
+}
+
+/* iframe内嵌社区预览卡片 */
+.comm-iframe {
+    width: 100%;
+    height: 280px;
+    border: 2px solid #8c2323;
+    border-radius: 6px;
+    margin: 20px 0;
+}
+
+/* 响应式 */
+@media screen and (max-width:992px) {
+    .post-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:768px) {
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,74 @@
+/* 导航栏简化布局 */
+.page-header
+{
+    padding: 12px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 筛选表单区域 布局5 表单分区 */
+.filter-form
+{
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.form-group
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 商品瀑布流Grid */
+.goods-waterfall
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* 商品hover放大动画 */
+.goods-item
+{
+    background: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.goods-item:hover
+{
+    transform: scale(1.03);
+}
+
+/* 响应式 */
+@media screen and (max-width:992px)
+{
+    .filter-form
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .goods-waterfall
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width:768px)
+{
+    .filter-form
+    {
+        grid-template-columns: 1fr;
+    }
+    .goods-waterfall
+    {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,133 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+nav{
+	background: #7FFF00;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	z-index: 99;
+	height: 60px;
+}
+nav a img{
+	padding-left: 100px;
+}
+nav ul{
+	margin: 0 20px;
+}
+nav>ul>li{
+	display: inline-block;
+}
+nav>ul>li>a{
+	text-decoration: none;
+	color: white;
+}
+nav>ul>li>a:hover{
+	text-decoration: overline underline;
+}
+#banner{
+	background-image: url(../img/bg.png);
+	background-size: cover;
+	padding: 70px 120px 100px;
+	color: white;
+}
+#banner ul{
+	margin: 30px 20px;
+}
+#banner ul li{
+	padding: 10px ;
+}
+#banner form{
+	border: 5px solid rgba(255,255,255,0.3);
+	width: 400px;
+	border-radius: 5px;
+}
+#banner form input{
+	border: 0;
+	width: 200px;
+	height: 50px;
+	box-sizing: border-box;
+}
+#banner form input.search{
+	padding-left: 20px;
+}
+#banner form input.btn{
+	background: darkred;
+	color: white;
+}
+h2.majorinfo{
+	color: #1a74fc;
+	padding: 20px 0;
+	text-align: center;
+}
+#linklist{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+#linklist a{
+	width: 33%;
+}
+#linklist a img{
+	width: 100%;
+	border-radius: 10px;
+}
+article{
+	padding: 20px;
+}
+article div{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+article div section{
+	width: 33%;
+	box-sizing: border-box;
+	padding: 10px;
+	color: #0033FF;
+}
+article div section h3{
+	margin: 10px 0;
+}
+article section p{
+	color:darkgray;
+	/*em (相对长度单位，相对于当前对象内文本的字体尺寸)： 是一个相对长度单位，最初是指字母M的宽度，故名em。现指的是字符宽度的倍数，用法类似百分比，如：0.8em, 1.2em,2em等。. 通常1em=16px。.*/
+	font-size: 0.8em;
+	line-height: 2em;
+}
+
+/*确定页面的响应式样式*/
+/*页面宽度小于992px*/
+@media screen and (max-width:992px) {
+    nav ul{
+    	position:relative;
+    	right: 0px;
+    	top: 200px;
+    	background: #0000FF;
+    }
+    nav ul li{
+    	display: block;
+    	border-bottom: 1px solid white;
+    	padding: 20px;
+    }
+    article div section{
+		width: 50%;
+    }
+
+}
+
+/*确定页面的响应式样式*/
+/*页面宽度小于768px*/
+@media screen and (max-width:768px) {
+	article div section{
+		width: 100%;
+    }
+    nav{
+    	font-size: 0.8em;
+    }
+
+}
+

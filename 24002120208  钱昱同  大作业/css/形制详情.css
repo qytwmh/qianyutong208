@@ -1,0 +1,81 @@
+/* 头部导航 */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+/* 主商品区域：左右二分Grid 布局1 */
+.detail-main-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 45px;
+    margin-bottom: 60px;
+}
+
+/* 规格参数区块 纵向分栏布局2 */
+.spec-wrap {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+}
+.spec-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+.spec-label {
+    font-weight: bold;
+    color: #8c2323;
+}
+
+/* 买家评价卡片Grid 布局3 */
+.comment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+.comment-card {
+    background: #fff2dc;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.comment-card:hover {
+    background: #ffe8bc;
+    transform: translateY(-5px);
+}
+
+/* 入场动画 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.slide-ani {
+    animation: slideIn 0.8s ease forwards;
+}
+
+/* 响应式适配 */
+@media screen and (max-width:992px) {
+    .comment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:768px) {
+    .detail-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .comment-grid {
+        grid-template-columns: 1fr;
+    }
+}

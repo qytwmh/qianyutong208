@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页设计案例列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        /* 调整为左上角定位 */
+        .web-case-list {
+            width: 600px;
+            list-style: none;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px 0;
+            /* 核心定位样式 */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .web-case-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            line-height: 1.5;
+        }
+
+        .case-title {
+            color: #333;
+        }
+        .case-author {
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="web-case-list">
+        <li>
+            <span class="case-title">[网页设计] 基于PSD设计图的网页设计流程</span>
+            <span class="case-author">无名作者</span>
+        </li>
+        <li>
+            <span class="case-title">[网页设计] 美观大气的css圆角边框</span>
+            <span class="case-author">绛雨花主</span>
+        </li>
+        <li>
+            <span class="case-title">[网页设计] 代码规范和浏览器兼容性</span>
+            <span class="case-author">绛雨花主</span>
+        </li>
+        <li>
+            <span class="case-title">[网页设计] 大气的黑色css导航菜单</span>
+            <span class="case-author">绛雨花主</span>
+        </li>
+        <li>
+            <span class="case-title">[网页设计] 非常简单的红色css导航菜单模版</span>
+            <span class="case-author">绛雨花主</span>
+        </li>
+        <li>
+            <span class="case-title">[网页设计] 绝对定位和相对定位的应用</span>
+            <span class="case-author">无名作者</span>
+        </li>
+    </ul>
+</body>
+</html>

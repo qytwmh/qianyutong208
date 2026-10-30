@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锦裳市集 - 汉服商品列表</title>
+    <link rel="stylesheet" href="../css/公共样式.css">
+    <link rel="stylesheet" href="../css/商品列表展示.css">
+</head>
+<body>
+    <header class="page-header">
+        <div class="logo">云章汉服</div>
+        <nav>
+            <ul>
+                <li><a href="首页.html">首页</a></li>
+                <li><a href="商品列表.html">锦裳市集</a></li>
+                <li><a href="礼乐文库.html">礼乐文库</a></li>
+                <li><a href="同胞社区.html">同袍雅集</a></li>
+                <li><a href="联系我们.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="marquee-box">
+        <marquee>春夏汉服专区限时折扣｜定制汉服7天出货｜满300赠送古风配饰</marquee>
+    </div>
+
+    <section>
+        <h2 class="title-shadow">锦裳市集 · 全部汉服商品</h2>
+
+        <!-- 第一功能区：筛选表单（表单元素必做） -->
+        <h3 class="sub-title">筛选商品</h3>
+        <form class="filter-form">
+            <div class="form-group">
+                <label>朝代形制</label>
+                <select>
+                    <option>全部形制</option>
+                    <option>唐制</option>
+                    <option>宋制</option>
+                    <option>明制</option>
+                    <option>魏晋风</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>价格区间</label>
+                <select>
+                    <option>全部价格</option>
+                    <option>0-100元</option>
+                    <option>100-200元</option>
+                    <option>200-300元</option>
+                    <option>300元以上</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>面料选择</label>
+                <input type="checkbox" id="silk"><label for="silk">雪纺</label>
+                <input type="checkbox" id="cotton"><label for="cotton">棉麻</label>
+            </div>
+            <div class="form-group">
+                <label>搜索关键词</label>
+                <input type="text" placeholder="输入马面裙、襦裙等">
+                <button type="submit" class="btn">搜索筛选</button>
+            </div>
+        </form>
+
+        <!-- 第二功能区：商品瀑布流Grid -->
+        <h3 class="sub-title">全部商品</h3>
+        <div class="goods-waterfall">
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/f6dfb226ce48a789daeb1e7c0206685f.jpg" alt="唐制齐胸襦裙">
+                </div>
+                <h4>唐制齐胸襦裙 青芜</h4>
+                <p>朝代：唐代 | 面料：雪纺</p>
+                <p>价格：199元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/913287784e5ea18870f854d9a8afb329.jpg" alt="明制马面裙">
+                </div>
+                <h4>明制织金马面裙 云鹤</h4>
+                <p>朝代：明代 | 面料：织金缎</p>
+                <p>价格：269元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/8819b0fd186bb14a7fcaa94048cbd181.jpg" alt="宋制褙子">
+                </div>
+                <h4>宋制素白褙子套装</h4>
+                <p>朝代：宋代 | 面料：棉麻</p>
+                <p>价格：129元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/2678559a842cc701c23d30539dc496b5.jpg" alt="魏晋大袖衫">
+                </div>
+                <h4>魏晋风烟霞大袖衫</h4>
+                <p>朝代：魏晋 | 面料：轻薄雪纺</p>
+                <p>价格：169元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/a3d6ab6809541f21ef29857034a06a4e.jpg" alt="明制立领袄裙">
+                </div>
+                <h4>明制桃红立领袄裙</h4>
+                <p>朝代：明代 | 面料：仿真丝</p>
+                <p>价格：239元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+            <div class="goods-item ani-fade">
+                <div class="img-box">
+                    <img src="../jpg/dba3839b3d3e0250958e3eb846fdc011.jpg" alt="唐制圆领袍">
+                </div>
+                <h4>唐制男女同款圆领袍</h4>
+                <p>朝代：唐代 | 面料：聚酯纤维</p>
+                <p>价格：219元</p>
+                <a href="形制详情.html" class="btn">查看详情</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>云章汉服锦裳市集 | <a href="首页.html" style="color:#ffd799;">返回首页</a></p>
+    </footer>
+</body>
+</html>

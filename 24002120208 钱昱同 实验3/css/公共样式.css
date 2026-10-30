@@ -1,0 +1,106 @@
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 1.8;
+    color: #333333;
+    background-color: #f8fff5;
+}
+
+/* HTML5语义化标签统一基础样式 */
+header {
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffd600;
+}
+
+section {
+    padding: 3rem 5%;
+}
+
+footer {
+    background-color: #1b5e20;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+h2 {
+    font-size: 26px;
+    color: #2e7d32;
+    margin-bottom: 2rem;
+    border-left: 5px solid #ff9800;
+    padding-left: 12px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+/* 按钮通用样式 */
+.btn {
+    display: inline-block;
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f57c00;
+    transform: translateY(-3px);
+}
+
+/* 小图统一规则（禁止大图） */
+.goods-img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #e8f5e9;
+}
+
+/* 媒体查询通用基础（移动端适配） */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    section {
+        padding: 2rem 3%;
+    }
+}

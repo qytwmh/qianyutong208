@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>繁花花店-首页</title>
+    <!-- 引入公共样式 -->
+    <link rel="stylesheet" href="./css/20260101-张三-公共样式.css">
+    <!-- 页面独立CSS -->
+    <link rel="stylesheet" href="./css/20260101-张三-首页.css">
+</head>
+<body>
+    <!-- 顶部固定导航 -->
+    <header class="header-nav">
+        <div class="container nav-wrap">
+            <div class="logo">繁花Flower</div>
+            <ul class="nav-list">
+                <li class="nav-item">首页</li>
+                <li class="nav-item">
+                    鲜花专区
+                    <ul class="drop-two">
+                        <li>玫瑰系列
+                            <ul class="drop-three">
+                                <li>红玫瑰</li>
+                                <li>粉玫瑰</li>
+                            </ul>
+                        </li>
+                        <li>郁金香</li>
+                    </ul>
+                </li>
+                <li class="nav-item">花礼套餐</li>
+                <li class="nav-item">花艺教程</li>
+                <li class="nav-item"><a href="20260101-张三-登录注册.html">登录</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- fixed 悬浮广告 -->
+    <div class="float-ad">新品鲜花8折<br>点击选购</div>
+
+    <!-- 侧边锚点目录 fixed -->
+    <div class="anchor-box">
+        <h4>页面导航</h4>
+        <a href="#banner">顶部Banner</a>
+        <a href="#feature">花店优势</a>
+        <a href="#hot">热销花束</a>
+        <a href="#story">品牌故事</a>
+        <a href="#contact">联系方式</a>
+    </div>
+
+    <!-- 主体内容，顶部预留导航高度 -->
+    <main class="main" style="margin-top: 60px;">
+        <!-- 锚点1 -->
+        <section id="banner" class="banner">
+            <div class="container">
+                <h1>人间温柔，尽在繁花</h1>
+                <p>同城鲜花配送 | 定制花礼 | 花艺沙龙</p>
+                <a href="#hot" class="btn">立即选购</a>
+            </div>
+        </section>
+
+        <!-- 锚点2 花店优势 -->
+        <section id="feature" class="section">
+            <div class="container">
+                <h2>我们的优势</h2>
+                <div class="feature-box">
+                    <div class="feature-item">
+                        <h3>当日现采</h3>
+                        <p>每日清晨花市直采，新鲜直达门店</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>同城速送</h3>
+                        <p>3小时全城配送，准时送达</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>免费包装</h3>
+                        <p>多款轻奢包装，附赠手写贺卡</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 锚点3 热销花束（多屏区块） -->
+        <section id="hot" class="section">
+            <div class="container">
+                <h2>热销花束</h2>
+                <div class="hot-list">
+                    <!-- 商品卡片 父相子绝3 角标标签 -->
+                    <div class="hot-card">
+                        <img src="./img/rose1.jpg" alt="红玫瑰">
+                        <span class="tag">爆款</span>
+                        <h4>99朵红玫瑰花束</h4>
+                        <p>¥299</p>
+                    </div>
+                    <div class="hot-card">
+                        <img src="./img/tulip.jpg" alt="郁金香">
+                        <span class="tag">新品</span>
+                        <h4>白色郁金香礼盒</h4>
+                        <p>¥169</p>
+                    </div>
+                    <div class="hot-card">
+                        <img src="./img/lily.jpg" alt="百合">
+                        <h4>香水百合混搭</h4>
+                        <p>¥129</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 锚点4 品牌故事 -->
+        <section id="story" class="section">
+            <div class="container">
+                <h2>品牌故事</h2>
+                <p>繁花花店创立于2018年，店主深耕花艺八年，坚持用自然鲜花传递浪漫...</p>
+            </div>
+        </section>
+
+        <!-- 锚点5 联系我们 -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>联系我们</h2>
+                <p>地址：XX市XX区鲜花路88号 | 配送热线：138XXXX8888</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 返回顶部锚点 -->
+    <a href="#" class="back-top">↑</a>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>繁花花店 ©2026 版权所有 | 鲜花配送服务</p>
+        </div>
+    </footer>
+</body>
+</html>

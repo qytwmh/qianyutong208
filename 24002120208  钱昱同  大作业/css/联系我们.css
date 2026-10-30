@@ -1,0 +1,86 @@
+/* 页面整体居中容器 */
+.contact-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 双栏布局：表单+店铺信息 布局1 */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+/* 完整表单区域 布局2 */
+.form-box {
+    background: #fff;
+    padding: 35px;
+    border-radius: 10px;
+}
+.form-row {
+    margin-bottom: 22px;
+}
+.form-row label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #8c2323;
+}
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 10px;
+}
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+.reset-btn {
+    background: #999;
+}
+.reset-btn:hover {
+    background: #777;
+    transform: translateY(-4px);
+}
+
+/* 店铺信息卡片布局3 */
+.info-card {
+    background: #fff2dc;
+    padding: 30px;
+    border-radius: 10px;
+}
+.info-item {
+    margin: 20px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 页面入场动画 */
+@keyframes fadeAll {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.page-fade {
+    animation: fadeAll 1s ease;
+}
+
+/* 响应式 */
+@media screen and (max-width:768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .radio-group {
+        flex-direction: column;
+        gap:8px;
+    }
+}

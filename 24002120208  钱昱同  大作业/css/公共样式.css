@@ -1,0 +1,159 @@
+/* 全局重置 盒模型标准化 */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: "SimSun", "Microsoft YaHei", serif;
+    background-color: #f7f3eb;
+    color: #333333;
+    line-height: 1.8;
+}
+
+/* HTML5语义标签基础 */
+header
+{
+    background-color: #8c2323;
+    color: #fff;
+}
+
+nav ul
+{
+    list-style: none;
+    display: flex;
+}
+
+nav a
+{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover
+{
+    color: #ffd799;
+    text-shadow: 0 0 6px #fff;
+}
+
+section
+{
+    padding: 40px 5%;
+}
+
+footer
+{
+    background-color: #591414;
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+    margin-top: 60px;
+}
+
+/* 文字阴影效果（作业必做text-shadow） */
+.title-shadow
+{
+    font-size: 32px;
+    color: #8c2323;
+    text-shadow: 2px 2px 4px #ccc;
+    margin-bottom: 20px;
+}
+
+.sub-title
+{
+    font-size: 22px;
+    border-left: 5px solid #8c2323;
+    padding-left: 12px;
+    margin-bottom: 24px;
+}
+
+/* 滚动字幕marquee 必做 */
+.marquee-box
+{
+    background-color: #fff2dc;
+    padding: 8px;
+    color: #8c2323;
+    font-weight: bold;
+}
+
+/* 通用按钮 hover效果 */
+.btn
+{
+    display: inline-block;
+    background-color: #8c2323;
+    color: #fff;
+    padding: 10px 22px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn:hover
+{
+    background-color: #b32c2c;
+    transform: translateY(-4px);
+}
+
+/* 通用图片美化 */
+.img-box
+{
+    border: 3px solid #e2d4bc;
+    border-radius: 6px;
+    padding: 6px;
+    background: #fff;
+}
+
+.img-box img
+{
+    width: 100%;
+    display: block;
+}
+
+/* 表单通用样式 */
+input, select, textarea
+{
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 动画关键帧 通用入场动画 */
+@keyframes fadeUp
+{
+    from
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ani-fade
+{
+    animation: fadeUp 0.7s ease forwards;
+}
+
+/* 媒体查询 响应式 */
+@media screen and (max-width:768px)
+{
+    nav ul
+    {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .title-shadow
+    {
+        font-size: 24px;
+    }
+}
