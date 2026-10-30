@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=deyice-width,initial-scale">
+    <title>表格布局</title>
+</head>
+<body>
+    <h3>单元表格</h3>
+    <table border="1" width="400">
+    <caption>铭记9.18</caption>
+    <tr>
+        <th>时间</th>
+        <td>地点</td>
+        <td>事件</td>
+    </tr>
+    <tr>
+        <th>9.18</th>
+        <td>中国</td>
+        <td><img src="1.jpg"  width="100px"></td>
+    </tr>
+    </table>
+    <h3>复合表</h3>
+    <table border="1" style="border-collapse: collapse;">
+        <caption>课程说明</caption>
+        <tr>
+            <th>课程名称</th>
+            <th>介绍</th>
+        </tr>
+        <tr>
+            <td rowspan="2">前端网站设计</td>
+            <td>网页制作</td>
+        </tr>
+        <tr>
+            <td>网页设计</td>
+        </tr>
+
+    </table>
+    <h3>表格列合并</h3>
+    <table border="1" style="border-collapse: collapse;">
+      <caption>回归分析统计表</caption>
+      <tr>     
+        <td>回归系数</td>
+        <th colspan="2">统计指标</th>
+      </tr>
+      <tr>
+       <table border="2" style="border-collapse: collapse;"></table>
+   
+  
+      </tr>
+    </table>
+    <h3>内联表或者内嵌iframe</h3>
+    <iframe src="https://www.tianqi.com"width="650" height="800px" frameborder="0">
+
+    </iframe name="list1" src="9-15.html" frameborder="0" width="100" height="400"></iframe>
+    <a href="2-3.html" target="list1">在内嵌框中打开新闻页</a>
+</body>
+</html>

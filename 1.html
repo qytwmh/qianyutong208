@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>最新单曲</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background: #ffffff;
+            padding: 30px;
+        }
+        .box {
+            display: flex;
+            width: 780px;
+            border: 1px solid #dddddd;
+        }
+        .left {
+            width: 60%;
+            padding: 26px;
+        }
+        .title-tag {
+            background-color: #ff9900;
+            color: #fff;
+            padding: 6px 16px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 22px;
+        }
+        .song-item {
+            font-size: 17px;
+            line-height: 2.4;
+            cursor: pointer;
+            color: #222;
+        }
+        .song-item:hover {
+            color: #ff7700;
+        }
+        .right {
+            width: 40%;
+            padding: 22px;
+            border-left: 1px solid #eee;
+        }
+        .cover-img {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        .info-text p {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+        .info-block {
+            display: none;
+        }
+        .info-block.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left">
+            <div class="title-tag">最新单曲</div>
+            <div class="song-item" data-index="0">01 爱的文身 莫圣依</div>
+            <div class="song-item" data-index="1">02 累了 阿信</div>
+            <div class="song-item" data-index="2">03 漫漫慢慢 阿朵</div>
+            <div class="song-item" data-index="3">04 我的怀念 孙燕姿</div>
+        </div>
+
+        <div class="right">
+            <div class="info-block" data-index="0">
+                <img class="cover-img" src="https://picsum.photos/id/1027/300/320" alt="莫圣依">
+                <div class="info-text">
+                    <p>歌名：爱的文身</p>
+                    <p>歌手：莫圣依</p>
+                    <p>介绍：华语流行女歌手，代表作《爱的文身》。</p>
+                </div>
+            </div>
+            <div class="info-block active" data-index="1">
+                <img class="cover-img" src="https://picsum.photos/id/1011/300/320" alt="阿信">
+                <div class="info-text">
+                    <p>歌名：累了</p>
+                    <p>歌手：阿信</p>
+                    <p>介绍：陈信宏（阿信），1975年12月6日生于台北市北投区，祖籍福建泉州，五月天主唱。</p>
+                </div>
+            </div>
+            <div class="info-block" data-index="2">
+                <img class="cover-img" src="https://picsum.photos/id/1025/300/320" alt="阿朵">
+                <div class="info-text">
+                    <p>歌名：漫漫慢慢</p>
+                    <p>歌手：阿朵</p>
+                    <p>介绍：内地实力派女歌手，民族流行风格。</p>
+                </div>
+            </div>
+            <div class="info-block" data-index="3">
+                <img class="cover-img" src="https://picsum.photos/id/1035/300/320" alt="孙燕姿">
+                <div class="info-text">
+                    <p>歌名：我的怀念</p>
+                    <p>歌手：孙燕姿</p>
+                    <p>介绍：新加坡华语天后，抒情经典作品众多。</p>
+                </div>
+            </div>
+        </div>
+    </div>

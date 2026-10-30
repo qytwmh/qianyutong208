@@ -1,0 +1,124 @@
+/* 顶部导航Grid布局 */
+.header-grid
+{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 15px 5%;
+}
+
+.logo
+{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* 首屏轮播介绍区 左右分栏布局1 */
+.banner-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* 新品汉服卡片Grid布局2 */
+.new-goods-grid
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.goods-card
+{
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    transition: box-shadow 0.4s;
+}
+
+.goods-card:hover
+{
+    box-shadow: 0 6px 18px rgba(140,35,35,0.18);
+}
+
+/* 社区精选 浮动流式布局3 */
+.community-float-box
+{
+    overflow: hidden;
+}
+
+.float-left
+{
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+    margin-bottom: 30px;
+}
+
+.float-right
+{
+    width: 48%;
+    float: right;
+}
+
+/* 服务承诺 弹性Flex布局4 */
+.service-flex
+{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.service-item
+{
+    flex: 1;
+    min-width: 200px;
+    background: #fff2dc;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* iframe交互卡片 必做 */
+.iframe-wrap
+{
+    width: 100%;
+    height: 320px;
+    border: 2px solid #8c2323;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* 首页响应式 */
+@media screen and (max-width:992px)
+{
+    .new-goods-grid
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width:768px)
+{
+    .header-grid
+    {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .banner-grid
+    {
+        grid-template-columns: 1fr;
+    }
+    .float-left, .float-right
+    {
+        width: 100%;
+        float: none;
+    }
+    .new-goods-grid
+    {
+        grid-template-columns: 1fr;
+    }
+}

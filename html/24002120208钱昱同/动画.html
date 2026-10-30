@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>不同频率圆点上下滑动动画</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background: #f3f3f3;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+    }
+    /* 黄色竖柱 */
+    .bar {
+        width: 140px;
+        height: 760px;
+        background: #ffdd55;
+        border-radius: 999px;
+        position: relative;
+    }
+    /* 中间大圆基础样式 */
+    .dot-middle {
+        width: 44px;
+        height: 44px;
+        background: #444a52;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    /* 分别设置每根柱子动画时长，实现不同晃动频率 */
+    .bar:nth-child(1) .dot-middle { animation: fullShake 1.5s ease-in-out infinite alternate; }
+    .bar:nth-child(2) .dot-middle { animation: fullShake 2.2s ease-in-out infinite alternate; }
+    .bar:nth-child(3) .dot-middle { animation: fullShake 0.9s ease-in-out infinite alternate; }
+    .bar:nth-child(4) .dot-middle { animation: fullShake 2.8s ease-in-out infinite alternate; }
+    .bar:nth-child(5) .dot-middle { animation: fullShake 1.2s ease-in-out infinite alternate; }
+
+    /* 上下固定小圆点 */
+    .dot-top {
+        width: 16px;
+        height: 16px;
+        background: #444a52;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: calc(50% - 70px);
+        transform: translateX(-50%);
+    }
+    .dot-bottom {
+        width: 16px;
+        height: 16px;
+        background: #444a52;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        bottom: calc(50% - 70px);
+        transform: translateX(-50%);
+    }
+    /* 滑动动画：顶部到底部 */
+    @keyframes fullShake {
+        0% {
+            top: 0;
+        }
+        100% {
+            top: calc(100% - 44px);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="bar">
+        <div class="dot-top"></div>
+        <div class="dot-middle"></div>
+        <div class="dot-bottom"></div>
+    </div>
+    <div class="bar">
+        <div class="dot-top"></div>
+        <div class="dot-middle"></div>
+        <div class="dot-bottom"></div>
+    </div>
+    <div class="bar">
+        <div class="dot-top"></div>
+        <div class="dot-middle"></div>
+        <div class="dot-bottom"></div>
+    </div>
+    <div class="bar">
+        <div class="dot-top"></div>
+        <div class="dot-middle"></div>
+        <div class="dot-bottom"></div>
+    </div>
+    <div class="bar">
+        <div class="dot-top"></div>
+        <div class="dot-middle"></div>
+        <div class="dot-bottom"></div>
+    </div>
+</body>
+</html>

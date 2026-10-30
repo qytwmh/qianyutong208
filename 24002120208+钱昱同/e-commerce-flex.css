@@ -1,0 +1,369 @@
+/* 全局初始化：统一内外边距、标准盒模型 */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* 全局平滑滚动，回到顶部锚点 */
+html{
+    scroll-behavior: smooth;
+}
+/* 全局页面基础样式、页面淡入动画 */
+body {
+    font-family: "微软雅黑", system-ui;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8fafc;
+    animation: pageFade 0.8s ease forwards;
+    /* 给固定导航预留顶部空白，避免页面内容被导航遮挡 */
+    padding-top: 80px;
+}
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===================== 右下角回到顶部固定按钮 ===================== */
+.back-top {
+    position: fixed;
+    right: 30px;
+    bottom: 40px;
+    width: 46px;
+    height: 46px;
+    background: #0d47a1;
+    color: #fff;
+    text-align: center;
+    line-height: 46px;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 998;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(13, 71, 161, 0.3);
+    transition: transform 0.3s ease;
+}
+.back-top:hover {
+    transform: translateY(-6px);
+}
+
+/* ===================== 顶部导航栏 强制固定页面最顶端 ===================== */
+header>nav {
+    /* 固定在视口最顶部，永远置顶 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 最高层级，所有内容都在导航下方 */
+    z-index: 9999;
+    background-color: #0d47a1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 80px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+/* logo图片适配 */
+header>nav>a.logo img {
+    height: 60px;
+    display: block;
+}
+/* PC端横向菜单，大屏展示 */
+header nav ul.menu {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+header nav ul.menu li a {
+    text-decoration: none;
+    color: white;
+    line-height: 80px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+/* 顶部导航下划线hover动画 */
+header nav ul.menu li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 0;
+    height: 2px;
+    background: #ffd700;
+    transition: width 0.3s ease;
+}
+header nav ul.menu li a:hover {
+    color: #ffd700;
+}
+header nav ul.menu li a:hover::after {
+    width: 100%;
+}
+
+/* ===================== Banner区域（PC右侧留150px避让侧边菜单） ===================== */
+header #banner {
+    min-height: 480px;
+    background: linear-gradient(135deg,#e3f2fd,#bbdefb);
+    display: flex;
+    align-items: center;
+}
+div#banner .intro {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 150px 60px 60px;
+}
+div.intro h2 {
+    font-size: 26px;
+    color: #0d47a1;
+    margin-bottom: 30px;
+    animation: titleUp 1s ease forwards;
+}
+@keyframes titleUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+div.intro ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 50px;
+}
+div.intro li {
+    font-size: 0.95em;
+    line-height: 2.4;
+    color: #1565c0;
+}
+/* PC搜索表单，输入框高度56px */
+div.intro form.more {
+    width: 380px;
+    position: relative;
+    z-index: 1;
+}
+div.intro form.more>div {
+    display: flex;
+    border: 2px solid rgba(21, 101, 192, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+div.intro input[type="text"] {
+    flex: 1;
+    height: 56px;
+    border: none;
+    padding: 0 14px;
+    outline: none;
+    font-size: 15px;
+}
+div.intro input[type="submit"] {
+    width: 100px;
+    height: 56px;
+    border: none;
+    background: #ec154d;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+div.intro input[type="submit"]:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+/* ===================== main卡片模块 多行多列Grid ===================== */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+main h2.main-title {
+    text-align: center;
+    font-size: 24px;
+    color: #0d47a1;
+    margin-bottom: 40px;
+    line-height: 1.4;
+    position: relative;
+}
+main h2.main-title::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: #0d47a1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    transition: width 0.6s ease;
+}
+main h2.main-title:hover::after {
+    width: 60px;
+}
+/* 卡片父容器Grid三列均分 */
+main article>div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+main article .main-list {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(13, 71, 161, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+main article .main-list:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(13, 71, 161, 0.18);
+}
+main article .main-list>i {
+    font-size: 32px;
+    color: #0d47a1;
+    transition: transform 0.4s ease;
+}
+main article .main-list:hover i {
+    transform: rotate(10deg) scale(1.1);
+}
+main article .main-list h3 {
+    margin-top: 20px;
+    color: #0d47a1;
+    font-size: 18px;
+}
+main article .main-list p {
+    margin-top: 16px;
+    color: #666;
+    line-height: 1.8;
+    font-size: 0.9em;
+}
+.clear {
+    clear: both;
+}
+
+/* ===================== 底部footer 单行flex ===================== */
+footer {
+    background-color: #0d47a1;
+    padding: 60px 0;
+    color: #fff;
+    margin-top: 30px;
+}
+footer>div {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+footer img {
+    width: 70px;
+    transition: transform 0.3s ease;
+}
+footer img:hover {
+    transform: scale(1.1);
+}
+footer p {
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+/* ===================== 响应式媒体查询 ===================== */
+/* 平板 小于992px */
+@media screen and (max-width: 992px) {
+    header>nav {
+        padding: 0 30px;
+    }
+    /* 右侧常驻侧边菜单，浅灰白柔和底色 */
+    header nav ul.menu {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 130px;
+        background-color: #f0f4f8;
+        flex-direction: column;
+        gap: 0;
+        border-left: 1px solid #e0e6ed;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.06);
+    }
+    header nav ul.menu li {
+        border-bottom: 1px solid #e6ecf0;
+        text-align: center;
+    }
+    /* 侧边菜单a标签相对定位，下划线居中贴合文字，解决错位 */
+    header nav ul.menu li a {
+        display: block;
+        line-height: 50px;
+        color: #0d47a1;
+        text-decoration: none;
+        font-size: 0.9rem;
+        position: relative;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+    /* 侧边菜单hover短下划线，居中不飘出、不错位 */
+    header nav ul.menu li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 12px;
+        width: 0;
+        height: 2px;
+        background: #ec154d;
+        transition: width 0.3s ease;
+    }
+    header nav ul.menu li a:hover {
+        color: #ec154d;
+        background-color: #e4edf5;
+    }
+    header nav ul.menu li a:hover::after {
+        width: 60%;
+    }
+
+    header #banner {
+        min-height: 420px;
+    }
+    /* Grid卡片改为两列 */
+    main article>div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* 手机 小于768px【核心修复：输入框加高+宽度拉满】 */
+@media screen and (max-width: 768px) {
+    header #banner {
+        min-height: 380px;
+    }
+    /* 手机端banner左右边距缩小，释放宽度 */
+    div#banner .intro {
+        padding: 40px 20px 40px 20px;
+    }
+    /* 表单宽度100%铺满 */
+    div.intro form.more {
+        width: 100%;
+    }
+    /* 垂直排列，上下分开 */
+    div.intro form.more>div {
+        flex-direction: column;
+        gap: 14px;
+        border: none;
+        background: transparent;
+    }
+    /* 手机端输入框高度同样56px，不会低矮 */
+    div.intro input[type="text"] {
+        width: 100%;
+        height: 56px;
+        border-radius: 6px;
+        font-size: 16px;
+        padding: 14px;
+    }
+    div.intro input[type="submit"] {
+        width: 100%;
+        height: 56px;
+        border-radius: 6px;
+    }
+    /* Grid单列铺满 */
+    main article>div {
+        grid-template-columns: 1fr;
+    }
+    main h2.main-title {
+        font-size: 20px;
+    }
+}

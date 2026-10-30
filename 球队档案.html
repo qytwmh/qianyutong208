@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曼彻斯特城足球俱乐部 - 官方介绍</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        /* 主体背景与基础样式 */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* 头部导航栏 */
+        header {
+            background-color: #6CABDD; /* 曼城主色调-天蓝色 */
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #FFDB00; /* 曼城辅助色-金色 */
+            border-bottom: 2px solid #FFDB00;
+        }
+
+        /* 响应式导航（移动端） */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* 主体内容容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* 卡片通用样式 */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #6CABDD;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #eee;
+            font-size: 24px;
+        }
+
+        .card h3 {
+            color: #FFDB00;
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+
+        /* 球队简介 */
+        .intro p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+
+        /* 荣誉墙 */
+        .honors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .honor-item {
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .honor-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* 主力阵容 */
+        .squad-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .player-card {
+            padding: 15px;
+            border: 2px solid #6CABDD;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .player-card h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .player-card .position {
+            color: #6CABDD;
+            font-weight: 500;
+        }
+
+        /* 球队历史 & 主场介绍 */
+        .history p, .stadium p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #6CABDD;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #FFDB00;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">曼彻斯特城足球俱乐部</div>
+            <nav>
+                <ul>
+                    <li><a href="#intro">球队简介</a></li>
+                    <li><a href="#honors">球队荣誉</a></li>
+                    <li><a href="#squad">主力阵容</a></li>
+                    <li><a href="#history">球队历史</a></li>
+                    <li><a href="#stadium">主场介绍</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 球队简介 -->
+        <section id="intro" class="card intro">
+            <h2>球队简介</h2>
+            <p>曼彻斯特城足球俱乐部（Manchester City F.C.），简称“曼城”，成立于1880年，绰号“蓝月亮”，主场位于英国曼彻斯特的伊蒂哈德球场，所属联赛为英格兰足球超级联赛。</p>
+            <p>2008年被阿布扎比财团收购后，曼城迅速完成从英超中游球队到顶级豪门的蜕变，球队在引援、青训、教练团队建设上持续投入，成为英超乃至欧洲足坛的顶尖力量。</p>
+            <p>曼城以精准的传控足球为核心打法，注重技术流和整体配合，瓜迪奥拉自2016年执教以来，进一步强化了球队的战术体系，截至2024年，球队在英超、欧冠等赛事中保持着极强的竞争力。</p>
+        </section>
+
+        <!-- 球队荣誉 -->
+        <section id="honors" class="card">
+            <h2>球队核心荣誉</h2>
+            <div class="honors-list">
+                <div class="honor-item">
+                    <h3>英格兰超级联赛冠军</h3>
+                    <p>2011-12赛季、2013-14赛季、2017-18赛季、2018-19赛季、2020-21赛季、2021-22赛季、2022-23赛季、2023-24赛季（共计8次）</p>
+                </div>
+                <div class="honor-item">
+                    <h3>欧洲冠军联赛冠军</h3>
+                    <p>2022-23赛季（队史首次夺得欧冠冠军，实现英超、足总杯、欧冠三冠王）</p>
+                </div>
+                <div class="honor-item">
+                    <h3>英格兰足总杯冠军</h3>
+                    <p>2010-11赛季、2018-19赛季、2022-23赛季（共计3次）</p>
+                </div>
+                <div class="honor-item">
+                    <h3>英格兰联赛杯冠军</h3>
+                    <p>2013-14赛季、2015-16赛季、2017-18赛季、2018-19赛季、2019-20赛季、2020-21赛季（共计6次，实现联赛杯四连冠）</p>
+                </div>
+                <div class="honor-item">
+                    <h3>欧洲超级杯冠军</h3>
+                    <p>2023年（击败塞维利亚夺冠）</p>
+                </div>
+                <div class="honor-item">
+                    <h3>国际足联世俱杯冠军</h3>
+                    <p>2023年（成为英格兰足坛第四支夺得世俱杯的球队）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主力阵容 -->
+        <section id="squad" class="card">
+            <h2>2024/25赛季现役主力阵容</h2>
+            <div class="squad-list">
+                <div class="player-card">
+                    <h4>埃德森</h4>
+                    <p class="position">门将</p>
+                </div>
+                <div class="player-card">
+                    <h4>凯尔·沃克</h4>
+                    <p class="position">右后卫</p>
+                </div>
+                <div class="player-card">
+                    <h4>鲁本·迪亚斯</h4>
+                    <p class="position">中后卫</p>
+                </div>
+                <div class="player-card">
+                    <h4>内森·阿克</h4>
+                    <p class="position">中后卫</p>
+                </div>
+                <div class="player-card">
+                    <h4>约什科·格瓦迪奥尔</h4>
+                    <p class="position">左后卫</p>
+                </div>
+                <div class="player-card">
+                    <h4>罗德里</h4>
+                    <p class="position">防守型中场</p>
+                </div>
+                <div class="player-card">
+                    <h4>凯文·德布劳内</h4>
+                    <p class="position">进攻型中场</p>
+                </div>
+                <div class="player-card">
+                    <h4>贝尔纳多·席尔瓦</h4>
+                    <p class="position">中场/边锋</p>
+                </div>
+                <div class="player-card">
+                    <h4>杰克·格拉利什</h4>
+                    <p class="position">左边锋</p>
+                </div>
+                <div class="player-card">
+                    <h4>埃尔林·哈兰德</h4>
+                    <p class="position">中锋</p>
+                </div>
+                <div class="player-card">
+                    <h4>菲尔·福登</h4>
+                    <p class="position">右边锋/中场</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 球队历史 -->
+        <section id="history" class="card history">
+            <h2>球队发展历史</h2>
+            <p>曼城的前身是1880年成立的“圣马克西姆登”（St. Mark's (West Gorton)），1887年更名为“阿德维克足球俱乐部”（Ardwick AFC），1894年正式更名“曼彻斯特城足球俱乐部”，并加入英格兰足球联赛。</p>
+            <p>20世纪上半叶，曼城曾短暂崛起，夺得1904年足总杯和1937年英甲（当时顶级联赛）冠军，但此后数十年间球队成绩起伏，长期徘徊于英甲/英乙联赛之间，仅在1968年夺得欧洲优胜者杯、1976年夺得联赛杯等少数荣誉。</p>
+            <p>2008年阿布扎比联合集团收购曼城后，球队进入高速发展期，先后引进特维斯、阿圭罗等球星，2011-12赛季凭借阿圭罗补时绝杀夺冠，时隔44年重夺顶级联赛冠军；2016年瓜迪奥拉上任后，球队战术体系更加成熟，实现英超多连冠，并在2023年首次问鼎欧冠，成为欧洲足坛的顶级豪门。</p>
+        </section>
+
+        <!-- 主场介绍 -->
+        <section id="stadium" class="card stadium">
+            <h2>主场 - 伊蒂哈德球场</h2>
+            <p>伊蒂哈德球场（Etihad Stadium）前称曼彻斯特城市球场，位于英国曼彻斯特东部的布拉姆利摩尔码头区，始建于1999年，最初为2002年英联邦运动会而建，2003年正式成为曼城主场。</p>
+            <p>球场历经多次扩建，2024年可容纳约53400名观众，是英超联赛中容量第四大的球场，仅次于老特拉福德、托特纳姆热刺球场和酋长球场；球场配备全英超最先进的草皮维护系统、高清四面大屏、无障碍球迷设施，是欧洲顶级的现代化专业足球场。</p>
+            <p>2011年曼城与伊蒂哈德航空达成10年冠名赞助协议，球场正式更名；球队计划在2025-2030年间进一步扩建北看台，将球场容量提升至60000人以上，届时将成为英超容量第三大的球场。</p>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <h3>曼彻斯特城足球俱乐部</h3>
+            <div class="footer-links">
+                <a href="https://www.mancity.com/" target="_blank">官方网站</a>
+                <a href="https://weibo.com/mancity" target="_blank">官方微博</a>
+                <a href="https://www.instagram.com/mancity/" target="_blank">Instagram</a>
+            </div>
+            <p class="copyright">© 2025 曼城球队介绍 | 本页面仅作学习使用，非官方出品</p>
+        </div>
+    </footer>
+</body>
+</html>

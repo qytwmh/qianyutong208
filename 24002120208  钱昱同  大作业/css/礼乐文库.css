@@ -1,0 +1,78 @@
+/* 整体双栏布局 侧边目录+正文 */
+.wiki-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+}
+
+/* 侧边目录栏 布局1 */
+.sidebar-menu {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    height: fit-content;
+}
+.sidebar-menu h4 {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8c2323;
+}
+.sidebar-menu ul {
+    list-style: none;
+}
+.sidebar-menu li {
+    margin: 12px 0;
+}
+.sidebar-menu a {
+    color: #333;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.sidebar-menu a:hover {
+    color: #8c2323;
+    padding-left: 8px;
+}
+
+/* 正文图文流式布局 布局2 */
+.wiki-content {
+    background: #fff;
+    padding: 35px;
+    border-radius: 10px;
+}
+.text-img-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0;
+    align-items: center;
+}
+
+/* 科普文章卡片Grid 布局3 */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+.article-card {
+    border: 1px solid #ddd;
+    padding: 18px;
+    border-radius: 8px;
+    transition: box-shadow 0.3s;
+}
+.article-card:hover {
+    box-shadow: 0 4px 14px rgba(140, 35, 35, 0.15);
+}
+
+/* 响应式 */
+@media screen and (max-width:768px) {
+    .wiki-container {
+        grid-template-columns: 1fr;
+    }
+    .text-img-row {
+        grid-template-columns: 1fr;
+    }
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>教程列表页面</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        /* 导航样式调整：居中显示，增加底部间距区分列表 */
+        .tab {
+            height: 26px;
+            width: 389px;
+            border-left: 1px solid #b1c8d7;
+            margin: 0 auto 20px; /* 上下留间距，左右自动实现居中 */
+        }
+        .tab a {
+            width: 96px;
+            float: left;
+            font-size: 14px;
+            line-height: 25px;
+            text-align: center;
+            color: #1e50a2;		
+            border-top: 1px solid #b1c8d7;
+            border-right: 1px solid #b1c8d7;
+            border-bottom: 1px solid #b1c8d7;
+        }
+        .tab a:hover {
+            font-weight: bold;
+            border-bottom-style: none;
+        }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 20px;
+            line-height: 2.2;
+            color: #333;
+            background-color: #fff;
+            /* 弹性布局：先纵向排列导航，再横向排列图片和列表 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* 中间内容容器：横向排列左右图片和列表 */
+        .content-container {
+            display: flex;
+            align-items: stretch; /* 让图片和列表高度完全对齐 */
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px; /* 限制最大宽度，避免页面过宽 */
+        }
+        /* 图片样式：调整适配列表高度，保持比例 */
+        .side-image {
+            width: 180px;
+            border-radius: 8px;
+            object-fit: cover; /* 保持图片比例，填充容器 */
+        }
+        /* 列表容器：占满中间空间，高度随内容自适应 */
+        .list-container {
+            flex: 1;
+        }
+        .list-item {
+            position: relative;
+            padding-left: 1em;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 8px 0;
+        }
+        .list-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+        }
+        .item-title {
+            flex-shrink: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .author {
+            color: #86c166;
+            flex-shrink: 0;
+            margin-left: 2px;
+        }
+        .views-text {
+            color: #333;
+            margin-left: 4px;
+            flex-shrink: 0;
+        }
+        .views-number {
+            color: #c40000;
+        }
+        .dot-line {
+            position: relative;
+            flex: 1;
+            height: 1.1em;
+            margin: 0 4px;
+        }
+        .dot-line::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-bottom: 1px dashed #999;
+            transform: translateY(50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏：居中显示，位于最上方 -->
+    <div class="tab">
+        <a href="">体育</a >
+        <a href=" ">财经</a >
+        <a href="#">房产</a >
+        <a href="#">娱乐</a >
+    </div>
+
+    <!-- 中间内容：左右图片 + 中间列表，高度对齐 -->
+    <div class="content-container">
+        <!-- 左侧图片 -->
+        <img src="2.jpg" alt="左侧图片" class="side-image">
+
+        <!-- 中间列表 -->
+        <div class="list-container">
+            <div class="list-item">
+                <span class="item-title">基于PSD设计图的网页设计流程</span>
+                <span class="author">无名</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">12321</span>点击量</span>
+            </div>
+            <div class="list-item">
+                <span class="item-title">美观大气的css圆角边框</span>
+                <span class="author">绛洞花主</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">11116</span>点击量</span>
+            </div>
+            <div class="list-item">
+                <span class="item-title">代码规范和浏览器兼容性</span>
+                <span class="author">绛洞花主</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">15556</span>点击量</span>
+            </div>
+            <div class="list-item">
+                <span class="item-title">大气的黑色css导航菜单</span>
+                <span class="author">无名</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">12416</span>点击量</span>
+            </div>
+            <div class="list-item">
+                <span class="item-title">非常简单的红色css导航菜单模版</span>
+                <span class="author">绛洞花主</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">11216</span>点击量</span>
+            </div>
+            <div class="list-item">
+                <span class="item-title">绝对定位和相对定位的应用</span>
+                <span class="author">泰山石敢当</span>
+                <span class="dot-line"></span>
+                <span class="views-text">共<span class="views-number">18416</span>点击量</span>
+            </div>
+        </div>
+
+        <!-- 右侧图片 -->
+        <img src="1.jpg" alt="右侧图片" class="side-image">
+    </div>
+</body>
+</html>

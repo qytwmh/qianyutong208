@@ -1,0 +1,171 @@
+/* 全局公共重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.7;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+}
+img {
+    vertical-align: middle;
+    object-fit: cover;
+}
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 侧边固定导航栏 fixed 全局交互 */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #1f2937;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+.avatar-box {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #4f46e5;
+    /* 头像hover缩放交互 */
+    transition: all 0.3s ease;
+}
+.avatar:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px #4f46e5;
+}
+.nav-item {
+    display: block;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+/* 导航hover变色交互 */
+.nav-item:hover {
+    background-color: #4f46e5;
+    padding-left: 24px;
+}
+/* 返回顶部按钮 fixed 右下角 */
+.back-top {
+    width: 48px;
+    height: 48px;
+    background: #4f46e5;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    bottom: 40px;
+    transition: 0.3s;
+}
+.back-top:hover {
+    background: #6366f1;
+    transform: translateY(-5px);
+}
+
+/* 主体内容区域 */
+.main-content {
+    margin-left: 280px;
+    padding: 50px 40px;
+    max-width: 1200px;
+}
+.section-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    /* 卡片hover上浮动画 */
+    transition: all 0.3s ease;
+}
+.section-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.section-title {
+    font-size: 22px;
+    border-left: 5px solid #4f46e5;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+
+/* 个人信息列表 */
+.info-list li {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.info-list span {
+    display: inline-block;
+    width: 100px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* 技能进度条 纯CSS hover动画 */
+.skill-item {
+    margin: 18px 0;
+}
+.skill-item p {
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.skill-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg,#4f46e5,#6366f1);
+    border-radius: 10px;
+    width: 0;
+    transition: width 0.8s ease;
+}
+/* 鼠标悬浮卡片后，进度条展开 */
+.section-card:hover .p90 { width: 90%; }
+.section-card:hover .p80 { width: 80%; }
+.section-card:hover .p95 { width: 95%; }
+.section-card:hover .p85 { width: 85%; }
+
+/* 项目卡片样式 */
+.project-card {
+    flex: 1;
+    min-width: 260px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+.project-card:hover {
+    border-color: #4f46e5;
+    background: #f8faff;
+}
+.project-card h3 {
+    color: #4f46e5;
+    margin-bottom: 8px;
+}

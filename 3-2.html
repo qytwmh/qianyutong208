@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>前端技术学习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", SimSun, sans-serif;
+            color: #2f5a98;
+        }
+
+        .container {
+            width: 700px;
+            border: 1px solid #2f5a98;
+            margin: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+        }
+        .top-left, .top-right {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .left-title {
+            background: #2f5a98;
+            color: #fff;
+            padding: 8px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            width: fit-content;
+        }
+        .right-title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .content {
+            display: flex;
+            height: auto;
+        }
+        .video-table, .tech-list {
+            width: 50%;
+            padding: 15px;
+        }
+        .video-table {
+            border-right: none;
+        }
+
+        .video-row {
+            position: relative;
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-row::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            background: #2f5a98;
+            width: 90%;
+            z-index: 1;
+        }
+
+        /* 第一行专用：取消原横线，用一体化线条替代 */
+        .video-row.first-row {
+            justify-content: flex-start;
+            padding-left: 35px;
+        }
+        /* 隐藏原横线，避免双重线条 */
+        .video-row.first-row::after {
+            display: none;
+        }
+        /* 核心：第一行完整线条（含前半段横线+横转竖衔接） */
+        .first-row-line {
+            position: absolute;
+            top: 50%;
+            left: 35px; /* 对齐第一个小框左侧 */
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        /* 一体化线条：前半段横线（覆盖两个小框范围）+ 竖线向下延伸 */
+        .first-row-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 220px; /* 横线长度（覆盖两个小框+间距） */
+            height: 2px;
+            background: #2f5a98;
+        }
+        .first-row-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 220px; /* 与横线末端完全对齐，无偏移 */
+            width: 2px;
+            height: 80px; /* 竖线长度 */
+            background: #2f5a98;
+            /* 100%无缝：竖线起点=横线末端，同一坐标点 */
+        }
+
+        .video-row.triangle-row {
+            gap: 8px;
+        }
+        .video-row.triangle-row::after {
+            display: none;
+        }
+
+        .video-row.circle-row {
+            gap: 8px;
+        }
+        .video-row.circle-row::after {
+            display: none;
+        }
+
+        .triangle-right {
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 6px solid #2f5a98;
+        }
+
+        .solid-circle {
+            width: 6px;
+            height: 6px;
+            background: #2f5a98;
+            border-radius: 50%;
+        }
+
+        .video-box {
+            border: 1px solid #2f5a98;
+            padding: 8px 12px;
+            font-size: 14px;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-list {
+            line-height: 32px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="top-left">
+                <div class="left-title">前端技术学习</div>
+            </div>
+            <div class="top-right">
+                <div class="right-title">流行的JavaScript框架：Vue.js</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="video-table">
+                <!-- 第1行：完全无缝的横线+横转竖线条 -->
+                <div class="video-row first-row">
+                    <div class="video-box">视频教程</div>
+                    <div class="video-box">视频教程</div>
+                    <!-- 一体化无缝线条 -->
+                    <div class="first-row-line"></div>
+                </div>
+                <!-- 第2行：三角形连接 -->
+                <div class="video-row triangle-row">
+                    <div class="video-box">视频教程</div>
+                    <div class="triangle-right"></div>
+                    <div class="video-box">视频教程</div>
+                    <div class="triangle-right"></div>
+                    <div class="video-box">视频教程</div>
+                </div>
+                <!-- 第3行：实心圆连接 -->
+                <div class="video-row circle-row">
+                    <div class="video-box">视频教程</div>
+                    <div class="solid-circle"></div>
+                    <div class="video-box">视频教程</div>
+                    <div class="solid-circle"></div>
+                    <div class="video-box">视频教程</div>
+                </div>
+                <!-- 第4行：默认蓝色横线 -->
+                <div class="video-row">
+                    <div class="video-box">视频教程</div>
+                    <div class="video-box">视频教程</div>
+                    <div class="video-box">视频教程</div>
+                </div>
+                <!-- 第5行：默认蓝色横线 -->
+                <div class="video-row">
+                    <div class="video-box">视频教程</div>
+                    <div class="video-box">视频教程</div>
+                    <div class="video-box">视频教程</div>
+                </div>
+            </div>
+
+            <div class="tech-list">
+                高级CSS应用技巧：圆角矩形和a:hover<br>
+                基于psd设计图的网页设计流程与实例<br>
+                JavaScript基本语法与特性<br>
+                webpack的介绍与应用<br>
+                jQuery: The Write Less, Do More<br>
+                Vant UI的效果及实例<br>
+                Tab选项卡的各种实现方法汇总
+            </div>
+        </div>
+    </div>
+</body>
+</html>

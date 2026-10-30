@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足球球星风采 - Football Stars Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .star-card { transition: all 0.3s ease; }
+        .star-card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
+        .bg-gradient-football { background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #1a2a6c 100%); }
+    </style>
+</head>
+<body class="bg-gray-200 text-gray-900">
+    <!-- 顶部导航栏（适配设计图顶部区域） -->
+    <header class="bg-gradient-football text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold flex items-center">
+                <i class="fa fa-futbol-o mr-2"></i>球星风采 Gallery
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href=" " class="hover:text-yellow-300 transition-colors">梅西</a ></li>
+                    <li><a href="#ronaldo" class="hover:text-yellow-300 transition-colors">C罗</a ></li>
+                    <li><a href="#mbappe" class="hover:text-yellow-300 transition-colors">姆巴佩</a ></li>
+                    <li><a href="#haaland" class="hover:text-yellow-300 transition-colors">哈兰德</a ></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 设计图布局容器 -->
+    <div class="container mx-auto px-4 py-2 grid grid-cols-[1fr_2fr] gap-6">
+        <!-- 左侧区域（3个小模块） -->
+        <div class="flex flex-col space-y-6">
+            <!-- 左侧模块1：梅西超链接 -->
+            <a href="#messi" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold text-gray-800">莱昂内尔·梅西</h3>
+                <p class="text-gray-600 mt-2">七届金球奖得主 | 阿根廷</p >
+            </a >
+
+            <!-- 左侧模块2：C罗超链接 -->
+            <a href="#ronaldo" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold text-gray-800">克里斯蒂亚诺·罗纳尔多</h3>
+                <p class="text-gray-600 mt-2">五届金球奖得主 | 葡萄牙</p >
+            </a >
+
+            <!-- 左侧模块3：姆巴佩超链接 -->
+            <a href="#mbappe" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold text-gray-800">基利安·姆巴佩</h3>
+                <p class="text-gray-600 mt-2">世界杯冠军 | 法国</p >
+            </a >
+        </div>
+
+        <!-- 右侧区域（大模块：哈兰德详情） -->
+        <div id="haaland" class="star-card bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="h-80 overflow-hidden">
+                < img src="https://assets.goal.com/images/v3/blt01727e3e4a54ab39/Erling_Haaland(5).jpg" alt="哈兰德风采" class="w-full h-full object-cover transition-transform hover:scale-110">
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-2xl font-bold text-gray-800">埃尔林·哈兰德</h3>
+                    <span class="bg-red-700 text-white text-sm py-1 px-3 rounded-full">挪威</span>
+                </div>
+                <p class="text-gray-600 mb-4">欧冠冠军，英超金靴，“进球机器”，以恐怖的效率和身体素质统治禁区。</p >
+                <a href="https://en.wikipedia.org/wiki/Erling_H%C3%A5land" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                    查看详情 <i class="fa fa-external-link ml-1"></i>
+                </a >
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部通栏模块（球星卡片区） -->
+    <section id="stars" class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 梅西卡片 -->
+            <div id="messi" class="star-card bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-64 overflow-hidden">
+                    < img src="https://p1.ssl.qhimg.com/t01011864e55b79fe3f.jpg" alt="梅西风采" class="w-full h-full object-cover transition-transform hover:scale-110">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold text-gray-800">莱昂内尔·梅西</h3>
+                        <span class="bg-blue-600 text-white text-sm py-1 px-3 rounded-full">阿根廷</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">七届金球奖得主，世界杯冠军，足坛历史最伟大球员之一。</p >
+                    <a href="https://en.wikipedia.org/wiki/Lionel_Messi" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                        查看详情 <i class="fa fa-external-link ml-1"></i>
+                    </a >
+                </div>
+            </div>
+
+            <!-- C罗卡片 -->
+            <div id="ronaldo" class="star-card bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-64 overflow-hidden">
+                    < img src="https://www.qwbaike.cn/uploads/202211/1669517008Wm6tGMrr.jpg" alt="C罗风采" class="w-full h-full object-cover transition-transform hover:scale-110">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold text-gray-800">克里斯蒂亚诺·罗纳尔多</h3>
+                        <span class="bg-green-600 text-white text-sm py-1 px-3 rounded-full">葡萄牙</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">五届金球奖得主，欧洲杯冠军，历史射手王。</p >
+                    <a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                        查看详情 <i class="fa fa-external-link ml-1"></i>
+                    </a >
+                </div>
+            </div>
+
+            <!-- 姆巴佩卡片 -->
+            <div id="mbappe" class="star-card bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-64 overflow-hidden">
+                    < img src="https://www.qwbaike.cn/uploads/202211/16680483078th9N4qJ.jpg" alt="姆巴佩风采" class="w-full h-full object-cover transition-transform hover:scale-110">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold text-gray-800">基利安·姆巴佩</h3>
+                        <span class="bg-blue-800 text-white text-sm py-1 px-3 rounded-full">法国</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">世界杯冠军，新生代领军人物，以惊人速度著称。</p >
+                    <a href="https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                        查看详情 <i class="fa fa-external-link ml-1"></i>
+                    </a >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 回到顶部按钮 -->
+    <a href="#" class="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all hover:shadow-xl opacity-0 invisible">
+        <<i class="fa fa-arrow-up"></</i>
+    </a >
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // 回到顶部按钮
+        const backToTopBtn = document.querySelector('a[href="#"]');
+        window.addEventListener('scroll', () => {
+            backToTopBtn.classList.toggle('opacity-100', window.scrollY > 300);
+            backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+            backToTopBtn.classList.toggle('opacity-0', window.scrollY <= 300);
+            backToTopBtn.classList.toggle('invisible', window.scrollY <= 300);
+        });
+    </script>
+</body>
+</html>

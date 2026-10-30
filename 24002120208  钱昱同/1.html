@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端工程师个人简历</title>
+    <!-- 引入外部CSS，路径正确不会失联 -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- 侧边导航（hover交互、锚点跳转） -->
+    <aside class="sidebar">
+        <div class="avatar-box">
+            <img src="13f24233cf6e70dde4959cad0995cc25.jpg" alt="个人头像" class="avatar">
+            <h2>张三</h2>
+            <p>前端开发工程师</p>
+        </div>
+        <nav class="nav-menu">
+            <a href="#info" class="nav-item">个人信息</a>
+            <a href="#skill" class="nav-item">专业技能</a>
+            <a href="#edu" class="nav-item">教育经历</a>
+            <a href="#project" class="nav-item">项目经验</a>
+            <a href="#eval" class="nav-item">自我评价</a>
+        </nav>
+        <!-- 纯CSS回到顶部（锚点） -->
+        <a href="#" class="back-top">↑</a>
+    </aside>
+
+    <!-- 主体简历内容 -->
+    <main class="main-content">
+        <!-- 个人信息模块 -->
+        <section id="info" class="section-card">
+            <h2 class="section-title">个人信息</h2>
+            <ul class="info-list">
+                <li><span>姓名：</span>钱昱同</li>
+                <li><span>电话：</span>138-0000-0000</li>
+                <li><span>邮箱：</span>demo@163.com</li>
+                <li><span>求职意向：</span>前端开发工程师</li>
+            </ul>
+        </section>
+
+        <!-- 专业技能（hover进度条动画） -->
+        <section id="skill" class="section-card">
+            <h2 class="section-title">专业技能</h2>
+            <div class="skill-item">
+                <p>HTML/CSS</p>
+                <div class="skill-bar">
+                    <div class="skill-progress p90"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <p>Vue框架</p>
+                <div class="skill-bar">
+                    <div class="skill-progress p80"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <p>Flex/弹性布局</p>
+                <div class="skill-bar">
+                    <div class="skill-progress p95"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <p>切图、响应式开发</p>
+                <div class="skill-bar">
+                    <div class="skill-progress p85"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育经历 -->
+        <section id="edu" class="section-card">
+            <h2 class="section-title">教育经历</h2>
+            <div class="edu-item">
+                <h3>XX大学 | 电子商务专业 | 本科</h3>
+                <p>2022.09 - 2026.06</p>
+                <p>主修课程：Web前端开发、数据库、UI设计</p>
+            </div>
+        </section>
+
+        <!-- 项目经验（hover卡片上浮阴影） -->
+        <section id="project" class="section-card">
+            <h2 class="section-title">项目经验</h2>
+            <div class="project-wrap flex-wrap">
+                <div class="project-card">
+                    <h3>电商商品展示页面</h3>
+                    <p>使用Flex布局完成商品卡片、下拉菜单，纯CSS实现交互，适配移动端</p>
+                </div>
+                <div class="project-card">
+                    <h3>企业官网静态页面</h3>
+                    <p>分离HTML/CSS公共样式，fixed导航、返回顶部、轮播静态布局</p>
+                </div>
+                <div class="project-card">
+                    <h3>个人电子简历（本项目）</h3>
+                    <p>纯CSS完成hover动画、进度条、侧边固定导航，无JavaScript</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 自我评价 -->
+        <section id="eval" class="section-card">
+            <h2 class="section-title">自我评价</h2>
+            <p class="eval-text">熟练掌握HTML5、CSS3基础，精通Flex弹性布局，能独立完成静态页面切图开发；仅使用CSS实现hover、过渡、动画交互，不依赖JS；学习能力强，注重代码规范与页面兼容性，期望从事前端开发岗位。</p>
+        </section>
+    </main>
+</body>
+</html>

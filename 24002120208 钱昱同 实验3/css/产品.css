@@ -1,0 +1,91 @@
+/* 产品页整体纵向Grid容器 */
+.product-container {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 产品主信息区（排版1：左右大图+详情） */
+.product-main {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    align-items: start;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* CSS关键帧入场动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-img {
+    max-width: 350px;
+}
+
+.spec-item {
+    display: flex;
+    margin: 15px 0;
+}
+
+.spec-label {
+    width: 100px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* 产地介绍板块（排版2：横向2等分Grid） */
+.origin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+/* 用户评价板块（排版3：4小卡片横向Grid） */
+.comment-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.comment-card {
+    background: #f1f8e9;
+    padding: 16px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.comment-card:hover {
+    background: #dcedc8;
+}
+
+/* 产品页媒体查询响应式 */
+@media screen and (max-width: 992px) {s
+    .comment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .product-main {
+        grid-template-columns: 1fr;
+    }
+    .origin-grid {
+        grid-template-columns: 1fr;
+    }
+    .comment-grid {
+        grid-template-columns: 1fr;
+    }
+}
