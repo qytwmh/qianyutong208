@@ -1,0 +1,266 @@
+/*
+  文学社社 - 图书频道页面样式表
+  作者：钱昱同（24002120208）
+  规范：所有 CSS 类名均以姓名首字母 qyt_ 开头
+*/
+
+/* ---------- 全局重置 ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font: 12px/1.6 "Microsoft YaHei", "SimSun", Arial, sans-serif;
+    color: #333;
+    background: #fff;
+}
+
+img {
+    display: block;
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* ---------- 整体容器 ---------- */
+.qyt_box {
+    width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #d5d5d5;
+    background: #fff;
+}
+
+/* ---------- 顶部标题栏 ---------- */
+.qyt_header {
+    padding: 14px 20px 12px;
+    border-bottom: 2px solid #3aa14b;   /* 效果图中的绿色分隔线 */
+}
+
+.qyt_title {
+    font: bold 20px/1 "Microsoft YaHei", sans-serif;
+    color: #333;
+}
+
+/* ---------- 主体三栏布局 ---------- */
+.qyt_main {
+    display: flex;
+    align-items: stretch;
+}
+
+/* ---------- 左栏：主编推荐 ---------- */
+.qyt_left {
+    width: 190px;
+    border-right: 1px solid #d5d5d5;
+    padding: 15px 15px 10px;
+    box-sizing: border-box;
+}
+
+.qyt_left_title {
+    font: bold 15px/1 "Microsoft YaHei", sans-serif;
+    text-align: center;
+    color: #333;
+    padding-bottom: 14px;
+}
+
+/* 主编推荐 - 书籍封面与力荐角标 */
+.qyt_feature_pic {
+    position: relative;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.qyt_feature_pic img {
+    width: 150px;
+    height: 200px;
+}
+
+.qyt_star_badge {
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    z-index: 2;
+    background: #3aa14b;                /* 与主题绿色一致 */
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px 6px 6px;
+}
+
+.qyt_feature_name {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #e8753f;                     /* 效果图中的橙色书名 */
+    text-align: center;
+}
+
+.qyt_feature_desc {
+    margin-top: 8px;
+    color: #999;
+    line-height: 1.8;
+}
+
+/* 左栏底部热点列表 */
+.qyt_hot_list {
+    margin-top: 12px;
+    border-top: 1px dashed #ddd;
+    padding-top: 10px;
+}
+
+.qyt_hot_list li {
+    color: #666;
+    line-height: 26px;
+    text-indent: 12px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 小圆点项目符号 */
+.qyt_hot_list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #bbb;
+}
+
+/* ---------- 中栏：图书栏目 ---------- */
+.qyt_center {
+    flex: 1;
+    min-width: 0;
+    padding: 0 15px;
+    position: relative;
+}
+
+/* 标签页导航 */
+.qyt_tab_nav {
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.qyt_tab_item {
+    font-size: 14px;
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #333;
+    padding: 14px 18px 12px;
+    cursor: pointer;
+}
+
+/* 选中状态的标签：绿色文字加绿色下划线 */
+.qyt_tab_item.qyt_tab_on {
+    color: #3aa14b;
+    font-weight: bold;
+    border-bottom: 2px solid #3aa14b;
+    margin-bottom: -1px;
+}
+
+/* 面板容器：三个面板默认隐藏，选中显示 */
+.qyt_pane {
+    display: none;
+    position: relative;
+    padding-top: 10px;
+}
+
+.qyt_pane.qyt_pane_on {
+    display: block;
+}
+
+/* 面板内右上角的榜单标题 */
+.qyt_rank_head {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    font: bold 14px/1 "Microsoft YaHei", sans-serif;
+    color: #333;
+}
+
+/* 图书网格：每行 4 本，共 2 行 */
+.qyt_book_grid {
+    width: 520px;
+    margin: 8px 0 0 10px;
+    overflow: hidden;
+}
+
+.qyt_book_grid li {
+    float: left;
+    width: 120px;
+    margin: 10px 5px 5px 10px;
+}
+
+.qyt_book_grid li img {
+    width: 120px;
+    height: 160px;
+    border: 1px solid #e0e0e0;
+}
+
+.qyt_book_name {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 红色价格，¥ 符号略小 */
+.qyt_price {
+    color: #e4312e;
+    font-weight: bold;
+}
+
+.qyt_price em {
+    font-style: normal;
+    font-size: 14px;
+}
+
+/* ---------- 右侧订阅榜 ---------- */
+.qyt_rank_list {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 220px;
+}
+
+.qyt_rank_list li {
+    line-height: 36px;
+    color: #555;
+    border-bottom: 1px dotted #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 序号样式：前三名橙色方块，其余灰字 */
+.qyt_rank_list li i {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: #999;
+    background: none;
+    border-radius: 3px;
+}
+
+.qyt_rank_list li:nth-child(1) i,
+.qyt_rank_list li:nth-child(2) i,
+.qyt_rank_list li:nth-child(3) i {
+    background: #e8541e;                 /* 前三名橙色序号块 */
+    color: #fff;
+    font-size: 12px;
+}
+
+/* 排名前三的榜单文字加粗深色 */
+.qyt_rank_list li:nth-child(-n+3) {
+    color: #333;
+}

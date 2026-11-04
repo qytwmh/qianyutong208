@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+  页面名称：文学社社 - 图书频道页面
+  作者：钱昱同（24002120208）
+  说明：一比一还原课堂效果图，三个栏目（流行小说 / 社科历史 / 文学艺术）可点击切换
+  规范：所有 CSS 类名、id、JS 变量均以姓名首字母 qyt_ 开头
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文学社社 - 图书频道</title>
+    <link rel="stylesheet" href="css/qyt_style.css">
+</head>
+<body>
+
+    <!-- 整体容器 -->
+    <div class="qyt_box">
+
+        <!-- 顶部标题栏 -->
+        <div class="qyt_header">
+            <h1 class="qyt_title">文学社社</h1>
+        </div>
+
+        <!-- 主体三栏区域 -->
+        <div class="qyt_main">
+
+            <!-- 左栏：主编推荐 -->
+            <div class="qyt_left">
+                <h2 class="qyt_left_title">主编推荐</h2>
+                <div class="qyt_feature">
+                    <div class="qyt_feature_pic">
+                        <span class="qyt_star_badge">★力荐</span>
+                        <img src="img/rui.jpg" alt="芮成钢《虚实之间》">
+                    </div>
+                    <p class="qyt_feature_name">芮成钢：《虚实之间》</p>
+                    <p class="qyt_feature_desc">有十年记者生涯对东西方文化的洞悉，又有与奥巴马等政要零距离接触…</p>
+                </div>
+                <ul class="qyt_hot_list">
+                    <li>兄弟我在义乌的发财史</li>
+                    <li>读佛即是拜佛：唐僧传</li>
+                    <li>二战苏军陆军单兵装备</li>
+                </ul>
+            </div>
+
+            <!-- 中栏：图书切换栏目 -->
+            <div class="qyt_center">
+
+                <!-- 标签页导航 -->
+                <ul class="qyt_tab_nav" id="qyt_tab_nav">
+                    <li class="qyt_tab_item qyt_tab_on" data-qyt-pane="qyt_pane_1">流行小说</li>
+                    <li class="qyt_tab_item" data-qyt-pane="qyt_pane_2">社科历史</li>
+                    <li class="qyt_tab_item" data-qyt-pane="qyt_pane_3">文学艺术</li>
+                </ul>
+
+                <!-- 面板一：流行小说 -->
+                <div class="qyt_pane qyt_pane_on" id="qyt_pane_1">
+                    <div class="qyt_rank_head">流行小说订阅榜</div>
+                    <ul class="qyt_book_grid">
+                        <li><img src="img/a1.jpg" alt="省长的女婿"><p class="qyt_book_name">省长的女婿</p><p class="qyt_price">￥ <em>5.98</em></p></li>
+                        <li><img src="img/a2.jpg" alt="辛夷坞：致青春"><p class="qyt_book_name">辛夷坞：致青春</p><p class="qyt_price">￥ <em>5.00</em></p></li>
+                        <li><img src="img/a3.jpg" alt="越位"><p class="qyt_book_name">越位</p><p class="qyt_price">￥ <em>2.99</em></p></li>
+                        <li><img src="img/a4.jpg" alt="扫黑"><p class="qyt_book_name">扫黑</p><p class="qyt_price">￥ <em>6.40</em></p></li>
+                        <li><img src="img/a5.jpg" alt="我的帝王生涯"><p class="qyt_book_name">我的帝王生涯</p><p class="qyt_price">￥ <em>4.00</em></p></li>
+                        <li><img src="img/a6.jpg" alt="南水北调书记"><p class="qyt_book_name">南水北调书记</p><p class="qyt_price">￥ <em>5.98</em></p></li>
+                        <li><img src="img/a7.jpg" alt="1／14第一季"><p class="qyt_book_name">1／14第一季</p><p class="qyt_price">￥ <em>4.00</em></p></li>
+                        <li><img src="img/a8.jpg" alt="辛夷坞：原来"><p class="qyt_book_name">辛夷坞：原来</p><p class="qyt_price">￥ <em>4.50</em></p></li>
+                    </ul>
+                    <ol class="qyt_rank_list">
+                        <li><i>1</i>山西煤老板（全文）</li>
+                        <li><i>2</i>你不可不知的人性（全二册）</li>
+                        <li><i>3</i>到爱的距离</li>
+                        <li><i>4</i>梅雨的季节（全文）</li>
+                        <li><i>5</i>大清相国（全文）</li>
+                        <li><i>6</i>悟慈（全文）</li>
+                        <li><i>7</i>省委班子2（全文）</li>
+                        <li><i>8</i>静水流深（全文）</li>
+                        <li><i>9</i>生死疲劳（全文）</li>
+                        <li><i>10</i>金瓶梅（全文）</li>
+                    </ol>
+                </div>
+
+                <!-- 面板二：社科历史 -->
+                <div class="qyt_pane" id="qyt_pane_2">
+                    <div class="qyt_rank_head">社科历史订阅榜</div>
+                    <ul class="qyt_book_grid">
+                        <li><img src="img/b1.jpg" alt="奋斗的仕途"><p class="qyt_book_name">奋斗的仕途</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/b2.jpg" alt="历史选择了邓小平"><p class="qyt_book_name">历史选择了邓小平</p><p class="qyt_price">￥ <em>6.00</em></p></li>
+                        <li><img src="img/b3.jpg" alt="钱穆看中国文化"><p class="qyt_book_name">钱穆看中国文化</p><p class="qyt_price">￥ <em>8.00</em></p></li>
+                        <li><img src="img/b4.jpg" alt="刺杀林肯"><p class="qyt_book_name">刺杀林肯</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/b5.jpg" alt="资本论"><p class="qyt_book_name">资本论</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/b6.jpg" alt="为什么是朱元璋"><p class="qyt_book_name">为什么是朱元璋</p><p class="qyt_price">￥ <em>4.00</em></p></li>
+                        <li><img src="img/b7.jpg" alt="阎崇年：大故宫"><p class="qyt_book_name">阎崇年：大故宫</p><p class="qyt_price">￥ <em>5.00</em></p></li>
+                        <li><img src="img/b8.jpg" alt="皇后阁历史"><p class="qyt_book_name">皇后阁历史</p><p class="qyt_price">￥ <em>4.00</em></p></li>
+                    </ul>
+                    <ol class="qyt_rank_list">
+                        <li><i>1</i>博弈与社会（全文）</li>
+                        <li><i>2</i>激荡三十年：中国企业</li>
+                        <li><i>3</i>我承认我不曾经沧桑</li>
+                        <li><i>4</i>吴敬琏传（全文）</li>
+                        <li><i>5</i>世界因你不同：李开复自传</li>
+                        <li><i>6</i>我们台湾这些年（全文）</li>
+                        <li><i>7</i>课本上不说的问题</li>
+                        <li><i>8</i>重口味心理学（提升日常行为）</li>
+                        <li><i>9</i>微表情心理学（混混、最</li>
+                        <li><i>10</i>法网冠军李娜自传：独自上场</li>
+                    </ol>
+                </div>
+
+                <!-- 面板三：文学艺术 -->
+                <div class="qyt_pane" id="qyt_pane_3">
+                    <div class="qyt_rank_head">文学艺术订阅榜</div>
+                    <ul class="qyt_book_grid">
+                        <li><img src="img/c1.jpg" alt="武昌城"><p class="qyt_book_name">武昌城</p><p class="qyt_price">￥ <em>4.50</em></p></li>
+                        <li><img src="img/c2.jpg" alt="贾平凹作品选"><p class="qyt_book_name">贾平凹作品选</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/c3.jpg" alt="最后一个匈奴"><p class="qyt_book_name">最后一个匈奴</p><p class="qyt_price">￥ <em>4.00</em></p></li>
+                        <li><img src="img/c4.jpg" alt="岁月与性情"><p class="qyt_book_name">岁月与性情</p><p class="qyt_price">￥ <em>8.00</em></p></li>
+                        <li><img src="img/c5.jpg" alt="浮生六记"><p class="qyt_book_name">浮生六记</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/c6.jpg" alt="周国平：宝贝"><p class="qyt_book_name">周国平：宝贝</p><p class="qyt_price">￥ <em>8.00</em></p></li>
+                        <li><img src="img/c7.jpg" alt="岳飞传"><p class="qyt_book_name">岳飞传</p><p class="qyt_price">￥ <em>3.00</em></p></li>
+                        <li><img src="img/c8.jpg" alt="撒哈拉的眼泪"><p class="qyt_book_name">撒哈拉的眼泪</p><p class="qyt_price">￥ <em>5.98</em></p></li>
+                    </ul>
+                    <ol class="qyt_rank_list">
+                        <li><i>1</i>2012诺贝尔文学奖得主莫言</li>
+                        <li><i>2</i>变：2012诺贝尔文学奖得主</li>
+                        <li><i>3</i>距离：2013诺贝尔文学奖得</li>
+                        <li><i>4</i>青春（韩寒2011最新作品）</li>
+                        <li><i>5</i>教你幽默到心田</li>
+                        <li><i>6</i>宝贝，宝贝</li>
+                        <li><i>7</i>白魔茧——白粉仔的十二年</li>
+                        <li><i>8</i>中国关系类（全文）</li>
+                        <li><i>9</i>于丹：重温最美古诗词（17</li>
+                        <li><i>10</i>妞妞：一个父亲的札记</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/qyt_tab.js"></script>
+</body>
+</html>
