@@ -1,0 +1,200 @@
+/*
+ * 作者：钱昱同
+ * 项目：文学社科 · 图书中心
+ * 说明：全站样式，所有类名以 qyt_ 开头（钱昱同姓名首字母）
+ */
+
+/* ========== 重置 ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Microsoft YaHei", "SimSun", serif; background: #f5f5f0; color: #333; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ========== 顶部标题 ========== */
+.qyt_header {
+  background: #fff;
+  border-bottom: 3px solid #2c5aa0;
+  padding: 18px 40px;
+  margin-bottom: 20px;
+}
+.qyt_title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c5aa0;
+  letter-spacing: 2px;
+}
+
+/* ========== 三栏主容器 ========== */
+.qyt_main {
+  display: flex;
+  gap: 20px;
+  padding: 0 40px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========== 左栏 ========== */
+.qyt_left {
+  width: 200px;
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #e8e4d9;
+  border-radius: 3px;
+}
+.qyt_section_title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #2c5aa0;
+  border-bottom: 2px solid #2c5aa0;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+
+/* 力荐 + 封面 */
+.qyt_featured { position: relative; margin-bottom: 12px; }
+.qyt_badge {
+  position: absolute; top: -8px; left: -10px; z-index: 2;
+  background: #e02020; color: #fff; font-size: 12px;
+  padding: 3px 8px; border-radius: 3px; font-weight: bold;
+}
+.qyt_star { margin-right: 2px; }
+
+.qyt_cover_featured {
+  height: 200px;
+  background: linear-gradient(135deg, #4a6fa5 0%, #2c5aa0 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 22px; font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+.qyt_book_title {
+  font-size: 14px; font-weight: bold;
+  color: #222; margin-bottom: 10px; line-height: 1.4;
+}
+.qyt_intro {
+  font-size: 12px; color: #666;
+  line-height: 1.6; margin-bottom: 12px; text-align: justify;
+}
+.qyt_related li {
+  font-size: 12px; color: #555; line-height: 2;
+  padding-left: 14px; position: relative;
+}
+.qyt_related li::before {
+  content: "•"; position: absolute; left: 0;
+  color: #2c5aa0; font-weight: bold;
+}
+
+/* ========== 中栏 ========== */
+.qyt_center {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e8e4d9;
+  border-radius: 3px;
+}
+
+/* Tab 按钮栏 */
+.qyt_tab_bar {
+  display: flex; border-bottom: 2px solid #ddd;
+  background: #fafaf5;
+}
+.qyt_tab_btn {
+  flex: 1; padding: 13px 0;
+  border: none; background: transparent;
+  font-size: 15px; color: #666;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+.qyt_tab_btn:hover { color: #2c5aa0; }
+.qyt_tab_btn.qyt_active {
+  color: #2c5aa0; font-weight: bold;
+  border-bottom-color: #2c5aa0;
+  background: #fff;
+}
+
+/* Tab 面板 */
+.qyt_panel { display: none; padding: 16px; }
+.qyt_panel.qyt_active { display: block; }
+
+/* 书籍网格 2行 × 4列 */
+.qyt_book_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 20px;
+}
+.qyt_book_grid li {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.qyt_book_grid li:hover { transform: translateY(-3px); }
+
+.qyt_cover {
+  width: 100%; height: 130px;
+  border: 1px solid #d5d0c4;
+  margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: #fff; font-weight: bold;
+  line-height: 1.3; padding: 4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  border-radius: 2px;
+}
+.qyt_bk_title {
+  font-size: 12px; color: #333;
+  line-height: 1.4; margin-bottom: 4px;
+  overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.qyt_price {
+  font-size: 13px; color: #e02020; font-weight: bold;
+}
+
+/* ========== 封面背景色（模拟不同书籍封面） ========== */
+.qyt_cov_red    { background: linear-gradient(135deg, #8b1a1a, #c0392b); }
+.qyt_cov_green  { background: linear-gradient(135deg, #145a32, #1e8449); }
+.qyt_cov_dark   { background: linear-gradient(135deg, #1c2833, #34495e); }
+.qyt_cov_black  { background: linear-gradient(135deg, #17202a, #2c3e50); }
+.qyt_cov_gold   { background: linear-gradient(135deg, #7d6608, #b7950b); }
+.qyt_cov_ink    { background: linear-gradient(135deg, #4a235a, #6c3483); }
+.qyt_cov_foul   { background: linear-gradient(135deg, #2c3e50, #566573); }
+.qyt_cov_origin { background: linear-gradient(135deg, #5d4037, #8d6e63); }
+.qyt_cov_yellow { background: linear-gradient(135deg, #b7950b, #f1c40f); color: #333; text-shadow: none; }
+.qyt_cov_map    { background: linear-gradient(135deg, #1a5276, #2980b9); }
+.qyt_cov_big    { background: linear-gradient(135deg, #a04000, #e67e22); }
+.qyt_cov_jing   { background: linear-gradient(135deg, #6e2c00, #af601a); }
+.qyt_cov_wuhan  { background: linear-gradient(135deg, #7b241c, #a93226); }
+.qyt_cov_jia    { background: linear-gradient(135deg, #fdfefe, #bdc3c7); color: #333; text-shadow: none; border: 1px solid #95a5a6; }
+.qyt_cov_xiongnu { background: linear-gradient(135deg, #4a235a, #5b2c6f); }
+.qyt_cov_suiyue { background: linear-gradient(135deg, #d5dbdb, #7f8c8d); color: #333; text-shadow: none; }
+.qyt_cov_fusheng { background: linear-gradient(135deg, #eaecee, #d5dbdb); color: #555; text-shadow: none; border: 1px solid #aab7b8; }
+.qyt_cov_zhou   { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.qyt_cov_yuefei { background: linear-gradient(135deg, #7d6608, #9a7d0a); }
+.qyt_cov_sahara { background: linear-gradient(135deg, #85929e, #b2babb); color: #333; text-shadow: none; }
+.qyt_cov_plain  { background: linear-gradient(135deg, #eaecee, #b2babb); color: #333; text-shadow: none; border: 1px solid #aab7b8; }
+.qyt_cov_bamboo { background: linear-gradient(135deg, #1e8449, #27ae60); }
+
+/* ========== 右栏 ========== */
+.qyt_right {
+  width: 200px;
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #e8e4d9;
+  border-radius: 3px;
+}
+.qyt_rank_list li {
+  font-size: 12px; color: #444;
+  line-height: 1.9; padding-left: 22px;
+  position: relative; text-align: left;
+}
+.qyt_rank_num {
+  position: absolute; left: 0; top: 2px;
+  width: 16px; height: 16px; line-height: 16px;
+  text-align: center; font-size: 11px; font-weight: bold;
+  background: #2c5aa0; color: #fff; border-radius: 2px;
+}
+/* 前三名高亮 */
+.qyt_rank_list li:nth-child(1) .qyt_rank_num,
+.qyt_rank_list li:nth-child(2) .qyt_rank_num,
+.qyt_rank_list li:nth-child(3) .qyt_rank_num {
+  background: #e02020;
+}
