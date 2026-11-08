@@ -1,0 +1,239 @@
+<!--
+  作者：钱昱同
+  创建时间：2026-11-04 15:29
+  编写工具：Trae（AI 大模型辅助）
+  功能：文学社科图书网站首页，三栏布局 + Tab 切换（流行小说/社科历史/文学艺术）
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文学社科 · 图书中心 · 钱昱同</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 作者：钱昱同 — 顶部标题栏 -->
+  <header class="qyt_header">
+    <h1 class="qyt_title">文学社科</h1>
+  </header>
+
+  <!-- 作者：钱昱同 — 主容器，三栏布局 -->
+  <div class="qyt_main">
+
+    <!-- ========== 左栏：主编推荐 ========== -->
+    <aside class="qyt_left">
+      <h2 class="qyt_section_title">主编推荐</h2>
+
+      <!-- 力荐徽章 + 封面 -->
+      <div class="qyt_featured">
+        <div class="qyt_badge">
+          <span class="qyt_star">★</span> 力荐
+        </div>
+        <!-- 作者：钱昱同 — 用渐变背景模拟封面图 -->
+        <div class="qyt_cover qyt_cover_featured">
+          <span class="qyt_cover_text">虚实之间</span>
+        </div>
+      </div>
+
+      <!-- 书名 -->
+      <h3 class="qyt_book_title">芮成钢：《虚实之间》</h3>
+
+      <!-- 简介 -->
+      <p class="qyt_intro">
+        有十年记者生涯对东西方文化的洞悉，又有与奥巴马等政要零距离接触…
+      </p>
+
+      <!-- 相关推荐列表 -->
+      <ul class="qyt_related">
+        <li>兄弟我在义乌的发财史</li>
+        <li>读佛即是拜佛：唐僧传</li>
+        <li>二战苏联陆军单兵装备</li>
+      </ul>
+    </aside>
+
+    <!-- ========== 中栏：Tab + 书籍网格 ========== -->
+    <section class="qyt_center">
+
+      <!-- 作者：钱昱同 — Tab 按钮栏 -->
+      <nav class="qyt_tab_bar">
+        <button class="qyt_tab_btn" data-target="qyt_panel_popular">流行小说</button>
+        <button class="qyt_tab_btn" data-target="qyt_panel_history">社科历史</button>
+        <button class="qyt_tab_btn qyt_active" data-target="qyt_panel_art">文学艺术</button>
+      </nav>
+
+      <!-- 作者：钱昱同 — Tab 面板容器 -->
+      <div class="qyt_tab_panels">
+
+        <!-- 面板1：流行小说 -->
+        <div class="qyt_panel" id="qyt_panel_popular">
+          <ul class="qyt_book_grid">
+            <li>
+              <div class="qyt_cover qyt_cov_red">省长的女婿</div>
+              <p class="qyt_bk_title">省长的女婿</p>
+              <p class="qyt_price">¥ 5.98</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_green">致青春</div>
+              <p class="qyt_bk_title">辛夷坞：致青春</p>
+              <p class="qyt_price">¥ 5.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_dark">越位</div>
+              <p class="qyt_bk_title">越位</p>
+              <p class="qyt_price">¥ 2.99</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_black">扫黑</div>
+              <p class="qyt_bk_title">扫黑</p>
+              <p class="qyt_price">¥ 6.40</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_gold">我的帝王生涯</div>
+              <p class="qyt_bk_title">我的帝王生涯</p>
+              <p class="qyt_price">¥ 4.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_ink">南水北调书记</div>
+              <p class="qyt_bk_title">南水北调书记</p>
+              <p class="qyt_price">¥ 5.98</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_foul">1/14 第一季</div>
+              <p class="qyt_bk_title">1/14 第一季</p>
+              <p class="qyt_price">¥ 4.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_origin">辛夷坞：原来</div>
+              <p class="qyt_bk_title">辛夷坞：原来</p>
+              <p class="qyt_price">¥ 4.50</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 面板2：社科历史 -->
+        <div class="qyt_panel" id="qyt_panel_history">
+          <ul class="qyt_book_grid">
+            <li>
+              <div class="qyt_cover qyt_cov_dark">奋斗的足迹</div>
+              <p class="qyt_bk_title">奋斗的足迹</p>
+              <p class="qyt_price">¥ 4.50</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_red">历史选择了邓小平</div>
+              <p class="qyt_bk_title">历史选择了邓小平</p>
+              <p class="qyt_price">¥ 3.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_plain">破解中国文化</div>
+              <p class="qyt_bk_title">破解中国文化</p>
+              <p class="qyt_price">¥ 3.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_bamboo">刺客林肯</div>
+              <p class="qyt_bk_title">刺客林肯</p>
+              <p class="qyt_price">¥ 4.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_yellow">资本论</div>
+              <p class="qyt_bk_title">资本论</p>
+              <p class="qyt_price">¥ 5.98</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_map">为什么是条顿</div>
+              <p class="qyt_bk_title">为什么是条顿</p>
+              <p class="qyt_price">¥ 6.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_big">大故宫</div>
+              <p class="qyt_bk_title">阎崇年：大故宫</p>
+              <p class="qyt_price">¥ 4.50</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_jing">清朝其实很有趣</div>
+              <p class="qyt_bk_title">清朝其实很有趣</p>
+              <p class="qyt_price">¥ 5.96</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 面板3：文学艺术（默认激活） -->
+        <div class="qyt_panel qyt_active" id="qyt_panel_art">
+          <ul class="qyt_book_grid">
+            <li>
+              <div class="qyt_cover qyt_cov_wuhan">武昌城</div>
+              <p class="qyt_bk_title">武昌城</p>
+              <p class="qyt_price">¥ 4.50</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_jia">贾平凹作品集</div>
+              <p class="qyt_bk_title">贾平凹作品集</p>
+              <p class="qyt_price">¥ 3.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_xiongnu">最后一个匈奴</div>
+              <p class="qyt_bk_title">最后一个匈奴</p>
+              <p class="qyt_price">¥ 4.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_suiyue">岁月与性情</div>
+              <p class="qyt_bk_title">岁月与性情</p>
+              <p class="qyt_price">¥ 8.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_fusheng">浮生六记</div>
+              <p class="qyt_bk_title">浮生六记</p>
+              <p class="qyt_price">¥ 3.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_zhou">周国平：宝贝</div>
+              <p class="qyt_bk_title">周国平：宝贝</p>
+              <p class="qyt_price">¥ 8.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_yuefei">岳飞传</div>
+              <p class="qyt_bk_title">岳飞传</p>
+              <p class="qyt_price">¥ 3.00</p>
+            </li>
+            <li>
+              <div class="qyt_cover qyt_cov_sahara">撒哈拉的眼泪</div>
+              <p class="qyt_bk_title">撒哈拉的眼泪</p>
+              <p class="qyt_price">¥ 5.96</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== 右栏：订阅榜 ========== -->
+    <aside class="qyt_right">
+      <h2 class="qyt_section_title">文学艺术订阅榜</h2>
+
+      <!-- 作者：钱昱同 — 排行榜列表 -->
+      <ol class="qyt_rank_list">
+        <li><span class="qyt_rank_num">1</span>2012诺贝尔文学奖得主莫言</li>
+        <li><span class="qyt_rank_num">2</span>变：2012诺贝尔文学奖得</li>
+        <li><span class="qyt_rank_num">3</span>逃离：2013诺贝尔文学奖得</li>
+        <li><span class="qyt_rank_num">4</span>青春（韩寒2011最新作品）</li>
+        <li><span class="qyt_rank_num">5</span>教你幽默到心田</li>
+        <li><span class="qyt_rank_num">6</span>宝贝，宝贝</li>
+        <li><span class="qyt_rank_num">7</span>白窟窿——白粉仔的十二年</li>
+        <li><span class="qyt_rank_num">8</span>中国式关系（全文）</li>
+        <li><span class="qyt_rank_num">9</span>于丹：重温最美古诗词（17</li>
+        <li><span class="qyt_rank_num">10</span>妞妞：一个父亲的札记</li>
+      </ol>
+    </aside>
+
+  </div>
+
+  <!-- 外部引入 Tab 切换脚本（钱昱同） -->
+  <script src="js/tab.js"></script>
+  <script>
+    // 钱昱同 — 初始化文学社科网站的 Tab 切换
+    qyt_initTabs('.qyt_center');
+  </script>
+
+</body>
+</html>
