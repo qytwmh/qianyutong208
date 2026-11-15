@@ -88,6 +88,21 @@
 
   footer{text-align:center;margin-top:34px;color:#9ca3af;font-size:13px;line-height:2}
 
+  /* ── 竖屏写真版（纵向滑动轮播 · 作者：钱昱同） ── */
+  .qyt_vert_wrap{display:flex;justify-content:center;margin-top:16px}
+  .qyt_vert{position:relative;width:300px;height:440px;border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(15,43,91,.2)}
+  .qyt_vert .swiper-slide{position:relative}
+  .qyt_vert img{width:100%;height:100%;object-fit:cover;display:block}
+  .qyt_vcap{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 14px;color:#fff;
+    background:linear-gradient(transparent,rgba(5,15,35,.85))}
+  .qyt_vcap h3{font-size:16px;letter-spacing:1px}
+  .qyt_vcap p{font-size:12.5px;color:#dbe6f8;margin-top:4px}
+  /* 分页器改到右侧、纵向排列 */
+  .qyt_vert .swiper-pagination{left:auto;right:10px;top:50%;transform:translateY(-50%);width:auto;
+    display:flex;flex-direction:column;gap:7px}
+  .qyt_vert .swiper-pagination-bullet{background:#fff;opacity:.45;margin:0!important}
+  .qyt_vert .swiper-pagination-bullet-active{background:#e8890c;opacity:1;width:22px;border-radius:6px}
+
   /* ══════════════════════════════════════════════════════════
      提示词与验证记录区（作者：钱昱同 · 类名统一 qyt_ 前缀）
   ══════════════════════════════════════════════════════════ */
@@ -166,9 +181,9 @@
   <div class="wy-head">
     <span class="wy-badge">高 职 · 高 级 网 页 设 计 · 课 堂 操 作 任 务</span>
     <h1>Swiper 轮播组件 · <b>大国重器光影展（完成版）</b></h1>
-    <p>4 个轮播全部<b>已初始化完成</b>：演示一能拖动、演示二圆点与箭头可用、演示三 2.6 秒自动翻页、演示四可实时切换七种效果。
+    <p>5 个轮播全部<b>已初始化完成</b>：演示一能拖动、演示二圆点与箭头可用、演示三 2.6 秒自动翻页、演示四可实时切换七种效果、演示五纵向竖屏滑动。
     页面底部新增<b>提示词与验证记录</b>，完整记录每个任务的对话、验证结果与答辩预答。</p>
-    <div class="wy-goals"><i>任务 1 · 救活最小轮播</i><i>任务 2 · 装上圆点和箭头</i><i>任务 3 · 让它自己翻页</i><i>任务 4 · 六种效果随心换</i><i>附 · 提示词与验证记录</i></div>
+    <div class="wy-goals"><i>任务 1 · 救活最小轮播</i><i>任务 2 · 装上圆点和箭头</i><i>任务 3 · 让它自己翻页</i><i>任务 4 · 六种效果随心换</i><i>附 · 竖屏写真版</i><i>附 · 提示词与验证记录</i></div>
   </div>
 
   <div class="wy-rule">
@@ -312,6 +327,36 @@
           <div class="swiper-pagination" id="wyPag4"></div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ─────────── 附：竖屏写真版（作者：钱昱同） ─────────── -->
+  <div class="wy-sec">
+    <div class="wy-sec-head">
+      <span class="wy-no">5</span>
+      <h2>竖屏写真版<small>direction: 'vertical' · 同一组照片的纵向取景</small></h2>
+    </div>
+    <p class="wy-txt">只改一个 <code>direction: 'vertical'</code>，同一组照片就变成竖构图相册：<b>上下拖动</b>切换、点右侧圆点也能跳转。图片文件完全不用改，靠 <code>object-fit: cover</code> 把横图裁成竖幅。</p>
+    <div class="wy-demo">
+      <span class="wy-demo-tag">🎛️ 演示五 · 竖屏写真（上下拖动或点右侧圆点）</span>
+      <div class="qyt_vert_wrap">
+        <div class="swiper qyt_vert" id="qyt_sw5">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="qyt_vcap"><h3>天宫空间站</h3><p>竖幅取景 · 向上滑动</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="qyt_vcap"><h3>复兴号动车组</h3><p>与横向版形成对比</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="qyt_vcap"><h3>C919 大飞机</h3><p>object-fit: cover 裁成竖构图</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="qyt_vcap"><h3>奋斗者号</h3><p>图片文件本身不用改</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="qyt_vcap"><h3>中国天眼 FAST</h3><p>只改容器的比例</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/adora_1.jpg" alt="爱达·魔都号"><div class="qyt_vcap"><h3>爱达·魔都号</h3><p>竖向滑动 · 圆点可点</p></div></div>
+          </div>
+          <div class="swiper-pagination" id="qyt_pag5"></div>
+        </div>
+      </div>
+    </div>
+    <div class="wy-req">
+      <h3>✍️ 竖屏版关键配置</h3>
+      <p><code>direction: 'vertical'</code> 纵向滑动 · 容器固定 <code>height</code> · <code>pagination</code> 放右侧 · <code>object-fit: cover</code> 把横图裁成竖幅。</p>
+      <span class="wy-star">⭐ 验证标准：上下拖动可切换，点右侧圆点能直接跳到对应那一张</span>
     </div>
   </div>
 
@@ -757,6 +802,28 @@ enabled: true 开启方向键翻页。</div>
       // TODO 3：用新 effect 重建实例（把其它配置原样保留）
       qyt_sw4 = new Swiper('#wySw4', qyt_getSw4Options(qyt_fx));
     });
+  });
+
+
+  // ── 附：竖屏写真版 #qyt_sw5，只把 direction 改成纵向 ──
+  // 作者：钱昱同（24002120208）
+  var qyt_sw5 = new Swiper('#qyt_sw5', {
+    // ① 纵向滑动：鼠标上下拖动即可切换
+    direction: 'vertical',
+    // ② 无缝循环
+    loop: true,
+    // ③ 切换动画时长 600 毫秒
+    speed: 600,
+    // ④ 每 3 秒自动向上翻一页，用户手动操作后自动播放继续
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    // ⑤ 右侧圆点分页器，可点击跳转到对应那一张
+    pagination: {
+      el: '#qyt_pag5',
+      clickable: true
+    }
   });
 </script>
 </body>
