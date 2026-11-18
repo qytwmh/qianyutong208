@@ -1,0 +1,120 @@
+<!--
+  作者：钱昱同
+  创建时间：2026-11-04 16:20
+  编写工具：Trae（AI 大模型辅助）
+  功能：诗词卡片页面（上图下文结构），通过 fetch 请求本地服务器 http://localhost:3004/api/poems，把 db.json 中 poems 的 pic、title、content 渲染成卡片列表
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>诗词卡片 · fetch 本地数据渲染</title>
+  <style>
+    /* 作者：钱昱同（24002120208） */
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    /* 卡片容器：弹性布局，自动换行 */
+    #qyt_poem_list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    /* 单张卡片：上图下文 */
+    .qyt_poem_card {
+      width: 260px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s;
+    }
+    .qyt_poem_card:hover {
+      transform: translateY(-4px);
+    }
+    .qyt_poem_card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;   /* 图片裁剪填满，不变形 */
+      display: block;
+    }
+    .qyt_poem_body {
+      padding: 14px 16px;
+    }
+    .qyt_poem_body h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .qyt_poem_body p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    /* 服务器未启动时的错误提示 */
+    #qyt_error {
+      text-align: center;
+      color: #c0392b;
+      font-size: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>诗词卡片（数据来自本地服务器 localhost:3004）</h1>
+  <!-- 挂载容器：卡片由 JS 动态渲染 -->
+  <div id="qyt_poem_list"></div>
+  <p id="qyt_error">数据获取失败！请先在 db 文件夹运行 node server.js（端口 3004）后刷新页面。</p>
+
+  <script>
+    // 作者：钱昱同（24002120208）
+    // 数据服务器接口地址（server.js 监听 3004 端口）
+    var qyt_api = 'http://localhost:3004/api/poems';
+
+    // 渲染函数：遍历数组，拼出"上图下文"卡片
+    function qyt_renderPoems(qyt_poems) {
+      var qyt_html = '';
+      for (var qyt_i = 0; qyt_i < qyt_poems.length; qyt_i++) {
+        qyt_html += '<div class="qyt_poem_card">'
+          + '<img src="' + qyt_poems[qyt_i].pic + '" alt="' + qyt_poems[qyt_i].title + '" referrerpolicy="no-referrer">'
+          + '<div class="qyt_poem_body">'
+          +   '<h2>' + qyt_poems[qyt_i].title + '</h2>'
+          +   '<p>' + qyt_poems[qyt_i].content + '</p>'
+          + '</div>'
+          + '</div>';
+      }
+      document.getElementById('qyt_poem_list').innerHTML = qyt_html;
+    }
+
+    // 加载函数：fetch 请求接口 → 解析 JSON → 渲染
+    function qyt_loadPoems() {
+      fetch(qyt_api)
+        .then(function (qyt_res) {
+          return qyt_res.json();   // 第一次拿到的是响应，需再解析一次
+        })
+        .then(function (qyt_poems) {
+          document.getElementById('qyt_error').style.display = 'none';
+          qyt_renderPoems(qyt_poems);   // 这里才是真正的数组
+        })
+        .catch(function () {
+          // 服务器没启动时给出友好提示，而不是白屏
+          document.getElementById('qyt_error').style.display = 'block';
+        });
+    }
+
+    qyt_loadPoems();   // 页面加载完就开始请求
+  </script>
+</body>
+</html>
