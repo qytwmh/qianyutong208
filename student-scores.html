@@ -1,0 +1,418 @@
+<!--
+  作者：钱昱同
+  创建时间：2026-11-18 15:44
+  编写工具：Trae（AI 大模型辅助）
+  功能：学生成绩分析面板，完成统计概览、搜索排序、不及格预警与学生成绩卡片的渲染逻辑
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学生成绩分析面板 · 钱昱同</title>
+<style>
+  :root{
+    --bg-1:#1a1c2c; --bg-2:#243b55;
+    --card:#ffffff; --card-soft:rgba(255,255,255,.92);
+    --ink:#1f2733; --ink-soft:#5b6472; --line:#e7eaf0;
+    --primary:#5b7cfa; --primary-d:#3f5fd9;
+    --accent:#21d4b4; --warn:#ff7a59; --gold:#f5b945; --rose:#ff5d8f;
+    --radius:14px; --shadow:0 10px 30px rgba(20,28,48,.18);
+    --shadow-sm:0 4px 14px rgba(20,28,48,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+    background:linear-gradient(135deg,var(--bg-1),var(--bg-2));min-height:100vh;color:var(--ink);line-height:1.6;padding:24px}
+  .wy_wrap{max-width:1180px;margin:0 auto}
+  .wy_head{background:var(--card-soft);border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+  .wy_head h1{font-size:22px;display:flex;align-items:center;gap:10px}
+  .wy_head h1 .wy_logo{width:38px;height:38px;border-radius:11px;flex:none;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff;font-weight:700}
+  .wy_head .wy_sub{color:var(--ink-soft);font-size:13px}
+  .wy_tagLevel{font-size:12px;font-weight:700;color:#fff;background:var(--primary);padding:4px 10px;border-radius:20px}
+  .wy_block{background:var(--card);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+  .wy_blockTitle{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:16px;color:var(--ink)}
+  .wy_blockTitle::before{content:"";width:4px;height:16px;border-radius:3px;background:var(--primary)}
+  .wy_blockTitle .wy_hint{font-weight:400;color:var(--ink-soft);font-size:12px}
+  .wy_statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .wy_statCard{background:linear-gradient(135deg,#f6f8ff,#fff);border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
+  .wy_statCard .wy_statValue{font-size:30px;font-weight:800;color:var(--primary);line-height:1.2}
+  .wy_statCard .wy_statLabel{font-size:13px;color:var(--ink-soft);margin-top:4px}
+  .wy_statCard .wy_statUnit{font-size:14px;color:var(--ink-soft);font-weight:600;margin-left:3px}
+  .wy_statCard.wy_accent .wy_statValue{color:var(--accent)}
+  .wy_statCard.wy_warn .wy_statValue{color:var(--warn)}
+  .wy_statCard.wy_gold .wy_statValue{color:var(--gold)}
+  .wy_controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .wy_searchBox{position:relative;flex:1;min-width:220px}
+  .wy_searchBox input{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line);border-radius:10px;font-size:14px;outline:none;transition:border-color .2s}
+  .wy_searchBox input:focus{border-color:var(--primary)}
+  .wy_searchBox .wy_ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-soft)}
+  .wy_btnGroup{display:flex;gap:6px;background:#eef1f7;padding:4px;border-radius:10px}
+  .wy_btnGroup button{border:none;background:transparent;padding:8px 14px;border-radius:7px;font-size:13px;color:var(--ink-soft);cursor:pointer;transition:all .18s}
+  .wy_btnGroup button.wy_active{background:#fff;color:var(--primary);font-weight:700;box-shadow:var(--shadow-sm)}
+  .wy_rankGrid{display:grid;grid-template-columns:1fr;gap:14px}
+  .wy_rankCard{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+  .wy_rankCard h4{font-size:13px;color:var(--ink-soft);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .wy_rankCard h4 .wy_dot{width:8px;height:8px;border-radius:50%;background:var(--primary)}
+  .wy_rankCard.wy_fail h4 .wy_dot{background:var(--warn)}
+  .wy_rankList{display:flex;flex-direction:column;gap:8px}
+  .wy_rankRow{display:flex;align-items:center;justify-content:space-between;font-size:13px}
+  .wy_rankRow .wy_rk{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;font-size:12px}
+  .wy_rankRow .wy_rk{background:#fde9dd;color:#c0602a}
+  .wy_rankRow .wy_nm{flex:1;margin:0 8px;font-weight:600}
+  .wy_rankRow .wy_vl{font-weight:700;color:var(--warn)}
+  .wy_empty{color:var(--ink-soft);font-size:13px;font-style:italic;text-align:center;padding:10px 0}
+  .wy_studentGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .wy_studentCard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;transition:transform .18s,box-shadow .18s;cursor:pointer}
+  .wy_studentCard:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .wy_studentCard .wy_hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .wy_avatar{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;color:#fff;font-size:15px}
+  .wy_avatar.wy_boy{background:linear-gradient(135deg,#5b7cfa,#7a5bfa)}
+  .wy_avatar.wy_girl{background:linear-gradient(135deg,#ff5d8f,#ff8fb1)}
+  .wy_studentCard .wy_name{font-weight:700;font-size:15px}
+  .wy_studentCard .wy_meta{font-size:12px;color:var(--ink-soft)}
+  .wy_studentCard .wy_rankBadge{margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:var(--primary);padding:3px 9px;border-radius:20px}
+  .wy_studentCard .wy_rankBadge.wy_rankGold{background:var(--gold)}
+  .wy_scoreGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px}
+  .wy_scoreItem{text-align:center;background:#f6f8ff;border-radius:8px;padding:6px 2px}
+  .wy_scoreItem .wy_sbj{font-size:11px;color:var(--ink-soft)}
+  .wy_scoreItem .wy_val{font-size:14px;font-weight:700}
+  .wy_scoreItem .wy_val.wy_fail{color:var(--warn)}
+  .wy_scoreItem .wy_val.wy_full{color:var(--accent)}
+  .wy_studentCard .wy_ft{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:8px;font-size:13px}
+  .wy_studentCard .wy_ft .wy_total{font-weight:800;color:var(--primary)}
+  .wy_studentCard .wy_ft .wy_avg{color:var(--ink-soft)}
+  .wy_foot{text-align:center;color:rgba(255,255,255,.7);font-size:12px;padding:14px 0}
+  .wy_foot .wy_backLink{display:inline-block;margin-top:6px;color:rgba(255,255,255,.92);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5)}
+</style>
+</head>
+<body>
+<div class="wy_wrap">
+
+  <header class="wy_head">
+    <h1><span class="wy_logo">分</span>学生成绩分析面板</h1>
+    <div>
+      <span class="wy_tagLevel">等级一 · 基础</span>
+      <div class="wy_sub">DOM 查找 × 数组方法 × 函数 综合实战</div>
+    </div>
+  </header>
+
+  <!-- 区域1：统计卡片 -->
+  <section class="wy_block">
+    <div class="wy_blockTitle">班级概览 <span class="wy_hint">getElementById / reduce / filter</span></div>
+    <div class="wy_statGrid">
+      <div class="wy_statCard"><div class="wy_statValue" id="wy_statCount">0</div><div class="wy_statLabel">班级人数（人）</div></div>
+      <div class="wy_statCard wy_accent"><div class="wy_statValue" id="wy_statTotalScore">0</div><div class="wy_statLabel">班级总分</div></div>
+      <div class="wy_statCard wy_gold"><div class="wy_statValue" id="wy_statAvgScore">0</div><div class="wy_statLabel">班级平均分</div></div>
+      <div class="wy_statCard wy_warn"><div class="wy_statValue" id="wy_statPassRate">0<span class="wy_statUnit">%</span></div><div class="wy_statLabel">及格率（无不及格科目）</div></div>
+    </div>
+  </section>
+
+  <!-- 区域2：控制区（搜索 + 排序）-->
+  <section class="wy_block">
+    <div class="wy_blockTitle">数据操作 <span class="wy_hint">filter / sort / querySelectorAll / classList / 事件委托</span></div>
+    <div class="wy_controls">
+      <div class="wy_searchBox">
+        <span class="wy_ico">🔍</span>
+        <input type="text" id="wy_searchInput" placeholder="按姓名或学号搜索…">
+      </div>
+      <div class="wy_btnGroup" id="wy_sortBtns">
+        <button class="wy_active" data-sort="total">按总分↓</button>
+        <button data-sort="id">按学号↑</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 区域3：不及格预警 -->
+  <section class="wy_block">
+    <div class="wy_blockTitle">不及格预警 <span class="wy_hint">filter / sort / forEach</span></div>
+    <div class="wy_rankGrid">
+      <div class="wy_rankCard wy_fail">
+        <h4><span class="wy_dot"></span>不及格学生名单</h4>
+        <div class="wy_rankList" id="wy_failWarningList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 区域4：学生卡片列表 -->
+  <section class="wy_block">
+    <div class="wy_blockTitle">学生成绩卡片 <span class="wy_hint">forEach / createElement / classList</span></div>
+    <div class="wy_studentGrid" id="wy_studentList"></div>
+  </section>
+
+  <footer class="wy_foot">
+    <div>高级网页设计课堂实践任务 · 等级一（基础）· 钱昱同</div>
+    <a class="wy_backLink" href="./index.html">← 返回课堂目录 index.html</a>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+ * 等级一（基础）· 学生成绩分析面板
+ * 数据来源：window.STUDENTS / window.SUBJECTS（见 data.js）
+ * ============================================================ */
+(function () {
+  "use strict";
+  const STUDENTS = window.STUDENTS;
+  const SUBJECTS = window.SUBJECTS;
+
+  const PASS_LINE = 60;          // 及格线
+  const EXCELLENT_AVG = 85;      // 优秀线（等级一暂不使用）
+
+  /* ---------- 工具函数 ---------- */
+  // 计算单科分数的样式类：不及格返回 "fail"，满分返回 "full"
+  function scoreClass(v) {
+    if (v < PASS_LINE) return "fail";
+    if (v >= 100) return "full";
+    return "";
+  }
+
+  // 计算一个学生的总分：用 reduce 把 SUBJECTS 对应的分数累加
+  function getTotal(s) {
+    return SUBJECTS.reduce(function (wy_sum, wy_sub) {
+      return wy_sum + s[wy_sub.key];
+    }, 0);
+  }
+
+  // 计算一个学生的平均分：总分 / 科目数，保留一位小数
+  function getAvg(s) {
+    return Math.round(getTotal(s) / SUBJECTS.length * 10) / 10;
+  }
+
+  // 取一个学生不及格的科目数组：用 filter 筛选分数 < PASS_LINE
+  function getFails(s) {
+    return SUBJECTS.filter(function (wy_sub) {
+      return s[wy_sub.key] < PASS_LINE;
+    });
+  }
+
+  // 姓名首字（头像用）
+  function firstName(s) {
+    return s.name.charAt(0);
+  }
+
+
+  /* ============ 本等级必做的 5 个函数 ============ */
+
+  /* ① 渲染统计卡片 —— getElementById + reduce + filter
+   * 把 list 的人数/总分/平均分/及格率写入 4 个统计卡片
+   * 及格率 = 没有不及格科目的学生人数 ÷ 总人数 × 100（取整）
+   */
+  function renderStats(list) {
+    var wy_count = list.length;
+    var wy_totalScore = list.reduce(function (wy_sum, wy_s) {
+      return wy_sum + getTotal(wy_s);
+    }, 0);
+    var wy_avgScore = wy_count
+      ? Math.round(wy_totalScore / (wy_count * SUBJECTS.length) * 10) / 10
+      : 0;
+    var wy_passCount = list.filter(function (wy_s) {
+      return getFails(wy_s).length === 0;
+    }).length;
+    var wy_passRate = wy_count ? Math.round(wy_passCount / wy_count * 100) : 0;
+
+    document.getElementById("wy_statCount").textContent = wy_count;
+    document.getElementById("wy_statTotalScore").textContent = wy_totalScore;
+    document.getElementById("wy_statAvgScore").textContent = wy_avgScore;
+    // 及格率元素内部已有百分号 span，只替换第一个文本节点
+    document.getElementById("wy_statPassRate").firstChild.textContent = wy_passRate;
+  }
+
+
+  /* ② 渲染学生卡片列表 —— forEach + createElement + classList
+   * 遍历 list 生成卡片 DOM，排名 = 在当前 list 中的序号 + 1
+   */
+  function renderStudentCards(list) {
+    var wy_container = document.getElementById("wy_studentList");
+    wy_container.innerHTML = "";
+
+    list.forEach(function (wy_s, wy_index) {
+      var wy_rank = wy_index + 1;
+      var wy_card = document.createElement("div");
+      wy_card.className = "wy_studentCard";
+      wy_card.setAttribute("data-id", wy_s.id);
+
+      // 头部：头像、姓名、学号、排名徽章
+      var wy_hd = document.createElement("div");
+      wy_hd.className = "wy_hd";
+
+      var wy_avatar = document.createElement("div");
+      wy_avatar.className = "wy_avatar " + (wy_s.gender === "女" ? "wy_girl" : "wy_boy");
+      wy_avatar.textContent = firstName(wy_s);
+
+      var wy_info = document.createElement("div");
+      var wy_nameEl = document.createElement("div");
+      wy_nameEl.className = "wy_name";
+      wy_nameEl.textContent = wy_s.name;
+      var wy_metaEl = document.createElement("div");
+      wy_metaEl.className = "wy_meta";
+      wy_metaEl.textContent = "学号 " + wy_s.id;
+      wy_info.appendChild(wy_nameEl);
+      wy_info.appendChild(wy_metaEl);
+
+      var wy_badge = document.createElement("span");
+      wy_badge.className = "wy_rankBadge" + (wy_rank <= 3 ? " wy_rankGold" : "");
+      wy_badge.textContent = "第 " + wy_rank + " 名";
+
+      wy_hd.appendChild(wy_avatar);
+      wy_hd.appendChild(wy_info);
+      wy_hd.appendChild(wy_badge);
+
+      // 五科分数网格
+      var wy_scoreGrid = document.createElement("div");
+      wy_scoreGrid.className = "wy_scoreGrid";
+      SUBJECTS.forEach(function (wy_sub) {
+        var wy_item = document.createElement("div");
+        wy_item.className = "wy_scoreItem";
+
+        var wy_sbj = document.createElement("div");
+        wy_sbj.className = "wy_sbj";
+        wy_sbj.textContent = wy_sub.abbr;
+
+        var wy_val = document.createElement("div");
+        wy_val.className = "wy_val";
+        var wy_cls = scoreClass(wy_s[wy_sub.key]);
+        if (wy_cls) wy_val.classList.add("wy_" + wy_cls);
+        wy_val.textContent = wy_s[wy_sub.key];
+
+        wy_item.appendChild(wy_sbj);
+        wy_item.appendChild(wy_val);
+        wy_scoreGrid.appendChild(wy_item);
+      });
+
+      // 底部：总分与均分
+      var wy_ft = document.createElement("div");
+      wy_ft.className = "wy_ft";
+      var wy_totalEl = document.createElement("span");
+      wy_totalEl.className = "wy_total";
+      wy_totalEl.textContent = "总分 " + getTotal(wy_s);
+      var wy_avgEl = document.createElement("span");
+      wy_avgEl.className = "wy_avg";
+      wy_avgEl.textContent = "均分 " + getAvg(wy_s);
+      wy_ft.appendChild(wy_totalEl);
+      wy_ft.appendChild(wy_avgEl);
+
+      wy_card.appendChild(wy_hd);
+      wy_card.appendChild(wy_scoreGrid);
+      wy_card.appendChild(wy_ft);
+      wy_container.appendChild(wy_card);
+    });
+  }
+
+
+  /* ③ 渲染不及格预警 —— filter + sort + forEach
+   * 筛出有不及格科目的学生，按不及格科目数降序写入列表
+   */
+  function renderFailWarning(list) {
+    var wy_box = document.getElementById("wy_failWarningList");
+    wy_box.innerHTML = "";
+
+    var wy_failList = list.filter(function (wy_s) {
+      return getFails(wy_s).length > 0;
+    });
+    wy_failList.sort(function (wy_a, wy_b) {
+      return getFails(wy_b).length - getFails(wy_a).length;
+    });
+
+    if (wy_failList.length === 0) {
+      var wy_empty = document.createElement("div");
+      wy_empty.className = "wy_empty";
+      wy_empty.textContent = "全员通过，无预警";
+      wy_box.appendChild(wy_empty);
+      return;
+    }
+
+    wy_failList.forEach(function (wy_s) {
+      var wy_fails = getFails(wy_s);
+      var wy_row = document.createElement("div");
+      wy_row.className = "wy_rankRow";
+
+      var wy_rk = document.createElement("span");
+      wy_rk.className = "wy_rk";
+      wy_rk.textContent = wy_fails.length;
+
+      var wy_nm = document.createElement("span");
+      wy_nm.className = "wy_nm";
+      wy_nm.textContent = wy_s.name + "（" + wy_fails.map(function (wy_sub) {
+        return wy_sub.name;
+      }).join("、") + "）";
+
+      var wy_vl = document.createElement("span");
+      wy_vl.className = "wy_vl";
+      wy_vl.textContent = "总分 " + getTotal(wy_s);
+
+      wy_row.appendChild(wy_rk);
+      wy_row.appendChild(wy_nm);
+      wy_row.appendChild(wy_vl);
+      wy_box.appendChild(wy_row);
+    });
+  }
+
+
+  /* ④ 搜索 —— filter + input 事件
+   * 按姓名或学号过滤，忽略大小写与首尾空格；无关键字返回全部
+   */
+  function search(keyword) {
+    var wy_kw = keyword.trim().toLowerCase();
+    if (!wy_kw) return STUDENTS.slice();
+    return STUDENTS.filter(function (wy_s) {
+      return wy_s.name.toLowerCase().indexOf(wy_kw) !== -1 ||
+             wy_s.id.toLowerCase().indexOf(wy_kw) !== -1;
+    });
+  }
+
+
+  /* ⑤ 排序 —— sort + slice + querySelectorAll + classList
+   * by="total" 按总分降序；by="id" 按学号升序；返回新数组
+   */
+  var wy_currentSort = "total";
+  function sortList(list, by) {
+    var wy_copy = list.slice();
+    if (by === "id") {
+      wy_copy.sort(function (wy_a, wy_b) {
+        return wy_a.id > wy_b.id ? 1 : -1;
+      });
+    } else {
+      wy_copy.sort(function (wy_a, wy_b) {
+        return getTotal(wy_b) - getTotal(wy_a);
+      });
+    }
+    return wy_copy;
+  }
+
+
+  /* ---------- 主刷新流程：依次调用上述函数 ---------- */
+  function refresh() {
+    var wy_kw = document.getElementById("wy_searchInput").value;
+    var wy_data = sortList(search(wy_kw), wy_currentSort);
+    renderStats(wy_data);
+    renderStudentCards(wy_data);
+    renderFailWarning(wy_data);
+  }
+
+
+  /* ---------- 事件绑定 ---------- */
+  var wy_timer = null;
+  document.getElementById("wy_searchInput").addEventListener("input", function () {
+    clearTimeout(wy_timer);
+    wy_timer = setTimeout(refresh, 200);
+  });
+
+  // 排序按钮：事件委托 + querySelectorAll 切换高亮
+  document.getElementById("wy_sortBtns").addEventListener("click", function (e) {
+    var wy_btn = e.target.closest("button");
+    if (!wy_btn) return;
+    wy_currentSort = wy_btn.getAttribute("data-sort");
+    this.querySelectorAll("button").forEach(function (wy_b) {
+      wy_b.classList.remove("wy_active");
+    });
+    wy_btn.classList.add("wy_active");
+    refresh();
+  });
+
+  /* ---------- 初始化 ---------- */
+  refresh();
+})();
+</script>
+</body>
+</html>
