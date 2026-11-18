@@ -1,0 +1,381 @@
+<!--
+  作者：王垚
+  建立时间：2026-11-18 15:52
+  使用大模型：DeepSeek-V4.1-Flash
+  功能名称：新闻调度台 Tab 选项卡页面，包含国内、省内、国际、最热四个分类，国内新闻默认选中
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="王垚的新闻分类 Tab 选项卡页面：国内、省内、国际、最热">
+  <title>新闻调度台 · 王垚</title>
+  <style>
+    :root {
+      --wy_dark: #12211c;
+      --wy_ink: #1b2a24;
+      --wy_paper: #e7dcc6;
+      --wy_sheet: #fbf8ee;
+      --wy_muted: #6d6a5c;
+      --wy_red: #b8452f;
+      --wy_green: #2f6b4f;
+      --wy_blue: #31597a;
+      --wy_gold: #c58b1f;
+      --wy_serif: Georgia, "Noto Serif CJK SC", "Songti SC", serif;
+      --wy_sans: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 46px 22px 40px;
+      color: #f4eddc;
+      background-color: var(--wy_dark);
+      background-image:
+        radial-gradient(circle at 82% 4%, rgba(232, 182, 76, .14), transparent 26rem),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 14px);
+      font-family: var(--wy_sans);
+      line-height: 1.7;
+    }
+
+    .wy_desk {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+    }
+
+    .wy_topRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+      font-size: 13px;
+    }
+
+    .wy_backHome {
+      color: rgba(244, 237, 220, .82);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244, 237, 220, .45);
+    }
+
+    .wy_backHome:hover { color: #fff; }
+
+    .wy_issue {
+      color: var(--wy_gold);
+      font-family: Consolas, "Courier New", monospace;
+      letter-spacing: .08em;
+    }
+
+    .wy_masthead {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 26px;
+      border-bottom: 4px solid rgba(244, 237, 220, .85);
+    }
+
+    .wy_masthead h1 {
+      margin: 0;
+      font-family: var(--wy_serif);
+      font-size: clamp(44px, 8vw, 88px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: .02em;
+    }
+
+    .wy_masthead h1 em {
+      color: var(--wy_gold);
+      font-weight: 400;
+    }
+
+    .wy_stamp {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border: 2px solid var(--wy_gold);
+      color: var(--wy_gold);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: .18em;
+      text-align: center;
+      transform: rotate(5deg);
+    }
+
+    .wy_standfirst {
+      max-width: 560px;
+      margin: 18px 0 40px;
+      color: rgba(244, 237, 220, .72);
+      font-size: 15px;
+    }
+
+    .wy_console {
+      background: var(--wy_sheet);
+      color: var(--wy_ink);
+      box-shadow: 0 32px 60px rgba(0, 0, 0, .38);
+    }
+
+    .wy_tabs {
+      display: flex;
+      gap: 6px;
+      padding: 18px 18px 0;
+      background: var(--wy_paper);
+      border-bottom: 1px solid rgba(27, 42, 36, .2);
+    }
+
+    .wy_tab {
+      position: relative;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 10px;
+      border: 1px solid rgba(27, 42, 36, .2);
+      border-bottom: none;
+      background: #dbcfb5;
+      color: #4d4b3c;
+      font-family: var(--wy_sans);
+      font-size: 15px;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .wy_tab:hover { background: #e6dbc4; }
+
+    .wy_tab.wy_isActive {
+      background: var(--wy_sheet);
+      color: var(--wy_ink);
+      font-weight: 700;
+      box-shadow: inset 0 3px 0 var(--wy_red);
+    }
+
+    .wy_tab:focus-visible {
+      outline: 2px solid var(--wy_red);
+      outline-offset: -3px;
+    }
+
+    .wy_dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--wy_red);
+    }
+
+    .wy_dot--green { background: var(--wy_green); }
+    .wy_dot--blue { background: var(--wy_blue); }
+    .wy_dot--gold { background: var(--wy_gold); }
+
+    .wy_panels { padding: 26px 30px 32px; }
+
+    .wy_panel { display: none; }
+
+    .wy_panel.wy_isActive {
+      display: block;
+      animation: wy_fade .22s ease both;
+    }
+
+    @keyframes wy_fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .wy_panelHead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--wy_ink);
+    }
+
+    .wy_panelLabel {
+      font-family: var(--wy_serif);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .wy_panelLabel span {
+      margin-left: 8px;
+      color: var(--wy_muted);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .08em;
+    }
+
+    .wy_panelMeta { color: var(--wy_muted); font-size: 12px; }
+
+    .wy_newsList {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .wy_newsItem {
+      display: grid;
+      grid-template-columns: 62px minmax(0, 1fr);
+      gap: 18px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px dashed rgba(27, 42, 36, .24);
+    }
+
+    .wy_newsItem:last-child { border-bottom: none; }
+
+    .wy_time {
+      color: var(--wy_red);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .wy_newsText {
+      margin: 0;
+      color: #2c382f;
+      font-size: 15.5px;
+    }
+
+    .wy_newsItem:hover .wy_newsText {
+      text-decoration: underline;
+      text-decoration-color: rgba(184, 69, 47, .5);
+      text-underline-offset: 4px;
+    }
+
+    .wy_foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+      color: rgba(244, 237, 220, .55);
+      font-size: 12px;
+    }
+
+    .wy_foot a {
+      color: rgba(244, 237, 220, .82);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244, 237, 220, .45);
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 30px 14px; }
+      .wy_masthead { align-items: flex-start; }
+      .wy_stamp { display: none; }
+      .wy_tabs { flex-wrap: wrap; padding: 14px 14px 0; }
+      .wy_tab { flex: 1 1 calc(50% - 6px); }
+      .wy_panels { padding: 20px 18px 26px; }
+      .wy_newsItem { grid-template-columns: 52px minmax(0, 1fr); gap: 12px; }
+      .wy_foot { display: block; }
+      .wy_foot p { margin-top: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wy_panel.wy_isActive { animation: none; }
+      .wy_tab { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wy_desk">
+    <header>
+      <div class="wy_topRow">
+        <a class="wy_backHome" href="./index.html">← 返回课堂目录</a>
+        <span class="wy_issue">2026-11-18 / 第 01 版</span>
+      </div>
+
+      <div class="wy_masthead">
+        <h1>新闻<em>调度台</em></h1>
+        <div class="wy_stamp">WIRE<br>DESK</div>
+      </div>
+
+      <p class="wy_standfirst">四个分类像待发的稿件夹。点开哪一栏，版面就翻到哪一页；国内新闻默认摆在上首。</p>
+    </header>
+
+    <main class="wy_console" id="wy_newsDesk">
+      <div class="wy_tabs" role="tablist" aria-label="新闻分类">
+        <button class="wy_tab wy_isActive" id="wy_tabDomestic" role="tab" aria-selected="true" aria-controls="wy_panelDomestic" tabindex="0">
+          <span class="wy_dot" aria-hidden="true"></span>国内新闻
+        </button>
+        <button class="wy_tab" id="wy_tabProvince" role="tab" aria-selected="false" aria-controls="wy_panelProvince" tabindex="-1">
+          <span class="wy_dot wy_dot--green" aria-hidden="true"></span>省内新闻
+        </button>
+        <button class="wy_tab" id="wy_tabInternational" role="tab" aria-selected="false" aria-controls="wy_panelInternational" tabindex="-1">
+          <span class="wy_dot wy_dot--blue" aria-hidden="true"></span>国际新闻
+        </button>
+        <button class="wy_tab" id="wy_tabHot" role="tab" aria-selected="false" aria-controls="wy_panelHot" tabindex="-1">
+          <span class="wy_dot wy_dot--gold" aria-hidden="true"></span>最热新闻
+        </button>
+      </div>
+
+      <div class="wy_panels">
+        <section class="wy_panel wy_isActive" id="wy_panelDomestic" role="tabpanel" aria-labelledby="wy_tabDomestic">
+          <div class="wy_panelHead">
+            <div class="wy_panelLabel">国内新闻<span>NATIONAL</span></div>
+            <div class="wy_panelMeta">更新 11:15 · 共 4 条</div>
+          </div>
+          <ul class="wy_newsList">
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T08:20">08:20</time><p class="wy_newsText">全国多地迎来今冬首场降雪，气象部门发布道路结冰预警。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T09:05">09:05</time><p class="wy_newsText">新一轮促消费政策落地，汽车与家电补贴范围进一步扩大。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T10:40">10:40</time><p class="wy_newsText">京港高铁全线贯通，北京至香港最快 8 小时直达。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T11:15">11:15</time><p class="wy_newsText">嫦娥六号月球背面样品研究成果在国际期刊正式发表。</p></li>
+          </ul>
+        </section>
+
+        <section class="wy_panel" id="wy_panelProvince" role="tabpanel" aria-labelledby="wy_tabProvince" hidden>
+          <div class="wy_panelHead">
+            <div class="wy_panelLabel">省内新闻<span>PROVINCIAL</span></div>
+            <div class="wy_panelMeta">更新 11:30 · 共 4 条</div>
+          </div>
+          <ul class="wy_newsList">
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T08:35">08:35</time><p class="wy_newsText">辽宁省新能源汽车年产量突破百万辆，增速继续领跑全国。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T09:50">09:50</time><p class="wy_newsText">沈阳故宫推出夜游专场，数字技术还原盛京八景。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T10:25">10:25</time><p class="wy_newsText">大连港自动化码头投入运营，装卸效率提升约三成。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T11:30">11:30</time><p class="wy_newsText">全省高校秋季运动会开幕，共有 42 所高校派出代表队。</p></li>
+          </ul>
+        </section>
+
+        <section class="wy_panel" id="wy_panelInternational" role="tabpanel" aria-labelledby="wy_tabInternational" hidden>
+          <div class="wy_panelHead">
+            <div class="wy_panelLabel">国际新闻<span>WORLD</span></div>
+            <div class="wy_panelMeta">更新 11:40 · 共 4 条</div>
+          </div>
+          <ul class="wy_newsList">
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T07:55">07:55</time><p class="wy_newsText">联合国气候大会达成新协议，2030 年减排目标再度提高。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T09:10">09:10</time><p class="wy_newsText">中欧班列累计开行突破 2 万列，陆上贸易通道保持畅通。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T10:05">10:05</time><p class="wy_newsText">国际空间站完成新一轮宇航员轮换，科学实验同步启动。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T11:40">11:40</time><p class="wy_newsText">世界杯预选赛进入关键轮次，多支球队争夺出线名额。</p></li>
+          </ul>
+        </section>
+
+        <section class="wy_panel" id="wy_panelHot" role="tabpanel" aria-labelledby="wy_tabHot" hidden>
+          <div class="wy_panelHead">
+            <div class="wy_panelLabel">最热新闻<span>TRENDING</span></div>
+            <div class="wy_panelMeta">更新 11:55 · 共 4 条</div>
+          </div>
+          <ul class="wy_newsList">
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T08:10">08:10</time><p class="wy_newsText">国产大飞机 C919 商业运营满一周年，累计运送旅客超百万人次。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T09:30">09:30</time><p class="wy_newsText">AI 大模型多模态能力升级，语音与图像理解同步提升。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T10:50">10:50</time><p class="wy_newsText">年度电影票房冠军诞生，口碑与票房实现双丰收。</p></li>
+            <li class="wy_newsItem"><time class="wy_time" datetime="2026-11-18T11:55">11:55</time><p class="wy_newsText">新能源汽车市场渗透率突破 50%，充电网络加速铺开。</p></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="wy_foot">
+      <a href="./index.html">返回首页 index.html</a>
+      <p>王垚 · 高级网页设计 · 2026</p>
+    </footer>
+  </div>
+
+  <script src="js/news-tabs.js"></script>
+  <script>
+    // 页面加载后初始化新闻调度台的选项卡
+    wy_initTabs('#wy_newsDesk');
+  </script>
+</body>
+</html>
