@@ -100,7 +100,14 @@ class ShoppingCart {
 4. **注释用中文**：所有注释统一使用中文。
 5. **不写 TODO/FIXME**：注释描述最终意图，不要在提交的代码里留待办标记。
 
-## 四、本项目 Git 信息
+## 四、新增强制规则（2026-11-18 起）
+
+1. **命名前缀**：所有新建或修改的 CSS 类名、`id` 名、JavaScript 变量名统一以 `wy_` 开头，例如 `.wy_card`、`id="wy_stage"`、`const wy_icons = [];`。
+2. **提示词记录**：每次执行任务前，先把提示词追加写入项目根目录的 `wy_prompt.md`，不覆盖已有内容；每条记录包含时间（`YYYY-MM-DD HH:mm`）、使用的模型、提示词原文。
+3. **首页入口**：新建的每个 HTML 文件都要在首页 `index.html` 的课堂目录中添加入口链接，并在页面内提供返回 `index.html` 的超链接。
+4. **前端设计**：视觉设计参考 `skills/frontend-design/SKILL.md`，避免模板化的默认样式。
+
+## 五、本项目 Git 信息
 
 - 远程仓库：`https://github.com/qytwmh/qianyutong208.git`
 - 主分支：`main`

@@ -1,0 +1,477 @@
+<!--
+  作者：钱昱同
+  创建时间：2026-11-18 15:52
+  编写工具：Trae（AI 大模型辅助）
+  功能：使用本地 Lucide 脚本以内联 SVG 方式制作制图台风格的艺术品牌图标展示页
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="钱昱同的 SVG 图标制图台：Lucide 线性图标与可调描边展示">
+  <title>Lucide 线条制图台 | 钱昱同 · 字形工坊</title>
+  <style>
+    :root {
+      --wy_paper: #f7f7f2;
+      --wy_ink: #23262b;
+      --wy_blue: #3a5bd9;
+      --wy_red: #b23a2f;
+      --wy_stroke: 1.5;
+      --wy_icon: #23262b;
+      --wy_sans: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+      --wy_serif: "Palatino Linotype", "Book Antiqua", Georgia, "Noto Serif CJK SC", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--wy_ink);
+      background-color: var(--wy_paper);
+      background-image:
+        linear-gradient(rgba(58, 91, 217, .09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58, 91, 217, .09) 1px, transparent 1px);
+      background-size: 32px 32px;
+      font-family: var(--wy_sans);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .wy_sheet {
+      width: min(1180px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .wy_top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(35, 38, 43, .45);
+      font-size: 14px;
+    }
+
+    .wy_back {
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--wy_blue);
+    }
+
+    .wy_mark {
+      font-family: var(--wy_serif);
+      font-size: 15px;
+      letter-spacing: .08em;
+    }
+
+    .wy_page { color: var(--wy_blue); font-weight: 700; }
+
+    .wy_hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: 40px;
+      align-items: center;
+      padding: 62px 0 58px;
+      border-bottom: 1px solid rgba(35, 38, 43, .45);
+    }
+
+    .wy_kicker {
+      margin: 0 0 16px;
+      color: var(--wy_red);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .wy_title {
+      margin: 0 0 22px;
+      font-family: var(--wy_serif);
+      font-size: clamp(50px, 8vw, 104px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.015em;
+    }
+
+    .wy_title em { color: var(--wy_blue); }
+
+    .wy_lede {
+      max-width: 540px;
+      margin: 0;
+      color: #444a55;
+      font-size: 16px;
+    }
+
+    .wy_drawing {
+      position: relative;
+      justify-self: center;
+      width: min(100%, 380px);
+      color: var(--wy_blue);
+    }
+
+    .wy_arcs { display: block; width: 100%; height: auto; }
+
+    .wy_arc {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: wy_draw 1.5s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+
+    .wy_arc--b { animation-delay: .2s; }
+    .wy_arc--c { animation-delay: .4s; }
+
+    @keyframes wy_draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .wy_tag {
+      position: absolute;
+      bottom: 14px;
+      left: -6px;
+      padding: 6px 12px;
+      border: 1px solid var(--wy_red);
+      background: var(--wy_paper);
+      color: var(--wy_red);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: .04em;
+      transform: rotate(-4deg);
+    }
+
+    .wy_specimen { padding: 54px 0 10px; }
+
+    .wy_secHead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .wy_secHead h2 {
+      margin: 0;
+      font-family: var(--wy_serif);
+      font-size: clamp(28px, 3.8vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .wy_secHead p { margin: 0; color: #5a6068; font-size: 14px; }
+
+    .wy_panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px 40px;
+      align-items: center;
+      margin-bottom: 26px;
+      padding: 20px 26px;
+      border: 1px solid rgba(35, 38, 43, .3);
+      background: rgba(255, 255, 255, .74);
+    }
+
+    .wy_panel label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
+
+    .wy_sliderRow { display: flex; align-items: center; gap: 14px; }
+
+    .wy_slider {
+      width: min(320px, 100%);
+      accent-color: var(--wy_blue);
+    }
+
+    .wy_readout {
+      min-width: 46px;
+      color: var(--wy_blue);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    .wy_swatches { display: flex; gap: 12px; }
+
+    .wy_swatch {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 1px solid rgba(35, 38, 43, .35);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .wy_swatch[aria-pressed="true"] {
+      outline: 2px solid var(--wy_ink);
+      outline-offset: 3px;
+    }
+
+    .wy_grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .wy_tile {
+      position: relative;
+      display: flex;
+      min-height: 158px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 22px;
+      border: 1px solid rgba(35, 38, 43, .28);
+      background: rgba(255, 255, 255, .68);
+      transition: border-color .18s ease, background .18s ease;
+    }
+
+    /* 四角的小圆点模拟制图台上的定位孔 */
+    .wy_tile::before,
+    .wy_tile::after {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--wy_blue);
+      border-radius: 50%;
+      background: var(--wy_paper);
+      content: "";
+    }
+
+    .wy_tile::before { top: -4px; left: -4px; }
+    .wy_tile::after { right: -4px; bottom: -4px; }
+
+    .wy_tile:hover {
+      border-color: var(--wy_blue);
+      background: #fff;
+    }
+
+    .wy_glyph { display: inline-flex; }
+
+    .wy_glyph svg {
+      width: 38px;
+      height: 38px;
+      color: var(--wy_icon);
+      stroke-width: var(--wy_stroke);
+      transition: stroke-width .12s linear;
+    }
+
+    .wy_name { font-size: 15px; font-weight: 700; }
+
+    .wy_code {
+      color: #5a6068;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    .wy_note {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: 40px;
+      align-items: center;
+      margin: 56px 0 64px;
+      padding: 38px;
+      border: 1px solid rgba(35, 38, 43, .35);
+      background: rgba(255, 255, 255, .6);
+    }
+
+    .wy_note h2 {
+      margin: 0 0 14px;
+      font-family: var(--wy_serif);
+      font-size: clamp(25px, 3.2vw, 34px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .wy_note p { margin: 0 0 12px; color: #444a55; font-size: 15px; }
+    .wy_note p:last-child { margin-bottom: 0; }
+
+    .wy_snippet {
+      margin: 0;
+      padding: 24px;
+      overflow-x: auto;
+      border: 1px solid rgba(35, 38, 43, .6);
+      background: #fdfcf6;
+      color: #2d3340;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12.5px;
+      line-height: 1.9;
+    }
+
+    .wy_snippet b { color: var(--wy_red); font-weight: 400; }
+
+    .wy_foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0 34px;
+      border-top: 1px solid rgba(35, 38, 43, .45);
+      font-size: 14px;
+    }
+
+    .wy_foot a { font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--wy_blue); }
+    .wy_foot nav a + a { margin-left: 22px; }
+
+    @media (max-width: 900px) {
+      .wy_sheet { width: min(100% - 36px, 680px); }
+      .wy_top { flex-wrap: wrap; gap: 10px; }
+      .wy_mark { order: 3; width: 100%; }
+      .wy_hero { display: block; padding: 46px 0 44px; }
+      .wy_drawing { width: min(100%, 300px); margin: 34px auto 0; }
+      .wy_panel { grid-template-columns: 1fr; }
+      .wy_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .wy_secHead { display: block; }
+      .wy_secHead p { margin-top: 6px; }
+      .wy_note { grid-template-columns: 1fr; gap: 24px; padding: 26px; }
+      .wy_foot { display: block; }
+      .wy_foot nav { margin-top: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wy_arc { animation: none; stroke-dashoffset: 0; }
+      .wy_tile, .wy_glyph svg { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wy_sheet">
+    <header class="wy_top">
+      <a class="wy_back" href="./index.html">← 返回课堂目录</a>
+      <span class="wy_mark">WY GLYPH ATELIER · 字形工坊</span>
+      <span class="wy_page">第 2 页 / LUCIDE</span>
+    </header>
+
+    <main>
+      <section class="wy_hero" aria-labelledby="wy_heroTitle">
+        <div>
+          <p class="wy_kicker">Lucide 0.468 · 矢量 SVG</p>
+          <h1 class="wy_title" id="wy_heroTitle">线条是<br><em>可以改</em>的</h1>
+          <p class="wy_lede">Lucide 不打包字体，它给出的是一段段 SVG 代码。描边粗细、颜色、尺寸都能单独调整，代价是需要脚本或手工写进页面。这一页把 16 个线性图标放上制图台，可以直接动手改。</p>
+        </div>
+        <div class="wy_drawing" aria-hidden="true">
+          <svg class="wy_arcs" viewBox="0 0 400 360" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle class="wy_arc wy_arc--a" cx="200" cy="180" r="148"></circle>
+            <path class="wy_arc wy_arc--b" d="M64 288a148 148 0 0 1 272 0"></path>
+            <path class="wy_arc wy_arc--c" d="M88 180a112 112 0 0 1 224 0"></path>
+            <line x1="200" y1="16" x2="200" y2="344"></line>
+            <line x1="36" y1="180" x2="364" y2="180"></line>
+            <circle cx="200" cy="180" r="3" fill="currentColor"></circle>
+          </svg>
+          <span class="wy_tag">viewBox 24 × 24 · stroke 1.5</span>
+        </div>
+      </section>
+
+      <section class="wy_specimen" aria-labelledby="wy_gridTitle">
+        <div class="wy_secHead">
+          <h2 id="wy_gridTitle">线条零件架</h2>
+          <p>16 个图标，由本地 Lucide 脚本渲染为内联 SVG</p>
+        </div>
+
+        <div class="wy_panel">
+          <div>
+            <label for="wy_stroke">图标描边粗细</label>
+            <div class="wy_sliderRow">
+              <input class="wy_slider" id="wy_stroke" type="range" min="1" max="3" step="0.25" value="1.5">
+              <output class="wy_readout" id="wy_strokeOut" for="wy_stroke">1.5</output>
+            </div>
+          </div>
+          <div class="wy_swatches" role="group" aria-label="图标颜色">
+            <button class="wy_swatch" type="button" data-wy-color="#23262b" style="background:#23262b" aria-label="石墨黑" aria-pressed="true"></button>
+            <button class="wy_swatch" type="button" data-wy-color="#3a5bd9" style="background:#3a5bd9" aria-label="蓝图蓝" aria-pressed="false"></button>
+            <button class="wy_swatch" type="button" data-wy-color="#b23a2f" style="background:#b23a2f" aria-label="标注红" aria-pressed="false"></button>
+          </div>
+        </div>
+
+        <ul class="wy_grid">
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="heart"></i></span><span class="wy_name">心形</span><code class="wy_code">heart</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="star"></i></span><span class="wy_name">星标</span><code class="wy_code">star</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="zap"></i></span><span class="wy_name">闪电</span><code class="wy_code">zap</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="camera"></i></span><span class="wy_name">相机</span><code class="wy_code">camera</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="compass"></i></span><span class="wy_name">罗盘</span><code class="wy_code">compass</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="moon"></i></span><span class="wy_name">月亮</span><code class="wy_code">moon</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="leaf"></i></span><span class="wy_name">叶片</span><code class="wy_code">leaf</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="crown"></i></span><span class="wy_name">王冠</span><code class="wy_code">crown</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="feather"></i></span><span class="wy_name">羽毛</span><code class="wy_code">feather</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="gem"></i></span><span class="wy_name">宝石</span><code class="wy_code">gem</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="flame"></i></span><span class="wy_name">火焰</span><code class="wy_code">flame</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="music"></i></span><span class="wy_name">音符</span><code class="wy_code">music</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="coffee"></i></span><span class="wy_name">咖啡</span><code class="wy_code">coffee</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="send"></i></span><span class="wy_name">纸飞机</span><code class="wy_code">send</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="cloud-sun"></i></span><span class="wy_name">晴间多云</span><code class="wy_code">cloud-sun</code></li>
+          <li class="wy_tile"><span class="wy_glyph" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="wy_name">闪光</span><code class="wy_code">sparkles</code></li>
+        </ul>
+      </section>
+
+      <section class="wy_note" aria-labelledby="wy_noteTitle">
+        <div>
+          <h2 id="wy_noteTitle">SVG 是代码，不是字形</h2>
+          <p>每个图标都是一段独立的矢量代码，浏览器按路径直接绘制。所以描边、颜色、尺寸可以逐个图标调整，放大多少倍都不会糊，也不受字体加载失败的影响。</p>
+          <p>代价是它不像字体图标那样只写一个 class：要么用脚本批量注入，要么把代码直接贴进 HTML。页面里这 16 个图标，就是由本地 Lucide 脚本把占位元素替换成 SVG 得到的。</p>
+        </div>
+        <pre class="wy_snippet"><code>&lt;svg viewBox="0 0 24 24" <b>fill="none"</b>
+     stroke="currentColor"
+     stroke-width="<b>1.5</b>"
+     stroke-linecap="round"&gt;
+  &lt;path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5
+           0 0 0 16.5 3c-1.76 0-3 .5-4.5 2
+           -1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2
+           8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/&gt;
+&lt;/svg&gt;</code></pre>
+      </section>
+    </main>
+
+    <footer class="wy_foot">
+      <nav aria-label="页面导航">
+        <a href="./index.html">返回首页 index.html</a>
+        <a href="./iconfont-1.html">看 Font Awesome 的字体版 →</a>
+      </nav>
+      <span>钱昱同 · 高级网页设计 · 2026</span>
+    </footer>
+  </div>
+
+  <script src="./cdn/lucide/lucide.min.js"></script>
+  <script>
+    // 把页面中的 data-lucide 占位元素渲染为内联 SVG 图标
+    function wy_renderIcons() {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    // 监听描边滑块，实时更新所有图标的描边粗细与数值显示
+    function wy_bindStroke() {
+      const wy_slider = document.getElementById('wy_stroke');
+      const wy_output = document.getElementById('wy_strokeOut');
+      wy_slider.addEventListener('input', function () {
+        const wy_value = wy_slider.value;
+        wy_output.textContent = wy_value;
+        document.documentElement.style.setProperty('--wy_stroke', wy_value);
+      });
+    }
+
+    // 点击色块切换图标颜色，并同步三个色块的选中状态
+    function wy_bindSwatches() {
+      const wy_buttons = document.querySelectorAll('.wy_swatch');
+      wy_buttons.forEach(function (wy_button) {
+        wy_button.addEventListener('click', function () {
+          const wy_color = wy_button.dataset.wyColor;
+          document.documentElement.style.setProperty('--wy_icon', wy_color);
+          wy_buttons.forEach(function (wy_item) {
+            wy_item.setAttribute('aria-pressed', String(wy_item === wy_button));
+          });
+        });
+      });
+    }
+
+    // 页面加载完成后依次初始化图标、滑块与色块交互
+    function wy_init() {
+      wy_renderIcons();
+      wy_bindStroke();
+      wy_bindSwatches();
+    }
+
+    wy_init();
+  </script>
+</body>
+</html>

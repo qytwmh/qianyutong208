@@ -1,0 +1,373 @@
+<!--
+  作者：钱昱同
+  创建时间：2026-11-18 15:40
+  编写工具：Trae（AI 大模型辅助）
+  功能：使用本地 Font Awesome 字体图标制作印刷标本风格的艺术品牌图标展示页
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="钱昱同的字体图标标本页：Font Awesome 6.7.2 solid 字形展示">
+  <title>Font Awesome 字形标本 | 钱昱同 · 字形工坊</title>
+  <link rel="stylesheet" href="./cdn/font-awesome/css/all.min.css">
+  <style>
+    :root {
+      --wy_paper: #edeae0;
+      --wy_card: #f6f2e7;
+      --wy_ink: #14183c;
+      --wy_blue: #2b3fa6;
+      --wy_rose: #d94f70;
+      --wy_sans: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      --wy_serif: Georgia, "Noto Serif CJK SC", "Songti SC", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--wy_ink);
+      background-color: var(--wy_paper);
+      background-image: radial-gradient(rgba(20, 24, 60, .08) 1px, transparent 1px);
+      background-size: 18px 18px;
+      font-family: var(--wy_sans);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .wy_sheet {
+      width: min(1180px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .wy_top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 3px solid var(--wy_ink);
+      font-size: 14px;
+    }
+
+    .wy_back {
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--wy_rose);
+    }
+
+    .wy_mark {
+      font-family: var(--wy_serif);
+      font-size: 15px;
+      letter-spacing: .08em;
+    }
+
+    .wy_page {
+      color: var(--wy_blue);
+      font-weight: 700;
+    }
+
+    .wy_hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 200px;
+      gap: 48px;
+      align-items: end;
+      padding: 66px 0 58px;
+      overflow: hidden;
+      border-bottom: 3px solid var(--wy_ink);
+    }
+
+    .wy_heroIcon {
+      position: absolute;
+      top: -46px;
+      right: 190px;
+      z-index: 0;
+      color: rgba(217, 79, 112, .16);
+      font-size: 300px;
+      line-height: 1;
+      transform: rotate(-14deg);
+      pointer-events: none;
+    }
+
+    .wy_heroText { position: relative; z-index: 1; }
+
+    .wy_kicker {
+      margin: 0 0 18px;
+      color: var(--wy_blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .wy_title {
+      max-width: 780px;
+      margin: 0 0 22px;
+      font-family: var(--wy_serif);
+      font-size: clamp(52px, 8.6vw, 112px);
+      font-weight: 700;
+      line-height: .98;
+      letter-spacing: -.01em;
+    }
+
+    .wy_title em {
+      color: var(--wy_rose);
+      font-weight: 400;
+    }
+
+    .wy_lede {
+      max-width: 560px;
+      margin: 0;
+      color: #33395a;
+      font-size: 17px;
+    }
+
+    .wy_stamp {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 178px;
+      height: 178px;
+      place-items: center;
+      padding: 18px;
+      border: 3px solid var(--wy_ink);
+      border-radius: 50%;
+      background: var(--wy_rose);
+      color: var(--wy_card);
+      text-align: center;
+      transform: rotate(6deg);
+      box-shadow: 8px 8px 0 var(--wy_ink);
+    }
+
+    .wy_stamp strong {
+      font-family: var(--wy_serif);
+      font-size: 58px;
+      line-height: 1;
+    }
+
+    .wy_stamp span {
+      display: block;
+      font-size: 12px;
+      letter-spacing: .14em;
+    }
+
+    .wy_specimen { padding: 58px 0 24px; }
+
+    .wy_secHead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .wy_secHead h2 {
+      margin: 0;
+      font-family: var(--wy_serif);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+    }
+
+    .wy_secHead p {
+      margin: 0;
+      color: #4a5075;
+      font-size: 14px;
+    }
+
+    .wy_grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .wy_tile {
+      display: flex;
+      min-height: 168px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 22px;
+      border: 2px solid var(--wy_ink);
+      background: var(--wy_card);
+      box-shadow: 6px 6px 0 var(--wy_ink);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .wy_tile i {
+      color: var(--wy_blue);
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .wy_tile:hover {
+      background: #fffdf6;
+      box-shadow: 10px 10px 0 var(--wy_rose);
+      transform: translate(-2px, -2px);
+    }
+
+    .wy_tile:hover i { color: var(--wy_rose); }
+
+    .wy_name { font-size: 16px; font-weight: 700; }
+
+    .wy_code {
+      color: #4a5075;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    .wy_note {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: 42px;
+      align-items: center;
+      margin: 64px 0 70px;
+      padding: 44px;
+      border: 3px solid var(--wy_ink);
+      background: var(--wy_card);
+    }
+
+    .wy_note h2 {
+      margin: 0 0 14px;
+      font-family: var(--wy_serif);
+      font-size: clamp(26px, 3.4vw, 36px);
+      line-height: 1.15;
+    }
+
+    .wy_note p { margin: 0 0 12px; color: #33395a; font-size: 15px; }
+    .wy_note p:last-child { margin-bottom: 0; }
+
+    .wy_snippet {
+      margin: 0;
+      padding: 26px;
+      overflow-x: auto;
+      border: 2px solid var(--wy_ink);
+      background: var(--wy_ink);
+      color: #f2ecd9;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .wy_snippet b { color: #f5a3b6; font-weight: 400; }
+
+    .wy_foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0 34px;
+      border-top: 3px solid var(--wy_ink);
+      font-size: 14px;
+    }
+
+    .wy_foot a {
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--wy_blue);
+    }
+
+    .wy_foot nav a + a { margin-left: 22px; }
+
+    @media (max-width: 900px) {
+      .wy_sheet { width: min(100% - 36px, 680px); }
+      .wy_top { flex-wrap: wrap; gap: 10px; }
+      .wy_mark { order: 3; width: 100%; }
+      .wy_hero { display: block; padding: 48px 0 44px; }
+      .wy_heroIcon { top: -20px; right: -30px; font-size: 200px; }
+      .wy_stamp { width: 140px; height: 140px; margin-top: 34px; }
+      .wy_stamp strong { font-size: 42px; }
+      .wy_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .wy_secHead { display: block; }
+      .wy_secHead p { margin-top: 6px; }
+      .wy_note { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
+      .wy_foot { display: block; }
+      .wy_foot nav { margin-top: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wy_tile { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wy_sheet">
+    <header class="wy_top">
+      <a class="wy_back" href="./index.html">← 返回课堂目录</a>
+      <span class="wy_mark">WY GLYPH ATELIER · 字形工坊</span>
+      <span class="wy_page">第 1 页 / FONT AWESOME</span>
+    </header>
+
+    <main>
+      <section class="wy_hero" aria-labelledby="wy_heroTitle">
+        <i class="fa-solid fa-heart wy_heroIcon" aria-hidden="true"></i>
+        <div class="wy_heroText">
+          <p class="wy_kicker">Font Awesome 6.7.2 · 字体图标</p>
+          <h1 class="wy_title" id="wy_heroTitle">把图标<br>当成<em>字</em>来排</h1>
+          <p class="wy_lede">Font Awesome 把每个图标做成字体文件里的一个字形。换字号就是换尺寸，换颜色就是换墨色，和排一段文字没有区别。这一页用它本地的 solid 字体做标本。</p>
+        </div>
+        <div class="wy_stamp" aria-hidden="true">
+          <div>
+            <strong>FA</strong>
+            <span>SIX · 6.7.2</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="wy_specimen" aria-labelledby="wy_gridTitle">
+        <div class="wy_secHead">
+          <h2 id="wy_gridTitle">字形标本架</h2>
+          <p>16 个 solid 字形，全部来自本地字体文件</p>
+        </div>
+        <ul class="wy_grid">
+          <li class="wy_tile"><i class="fa-solid fa-heart" aria-hidden="true"></i><span class="wy_name">心形</span><code class="wy_code">fa-heart</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-star" aria-hidden="true"></i><span class="wy_name">星标</span><code class="wy_code">fa-star</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span class="wy_name">闪电</span><code class="wy_code">fa-bolt</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-camera" aria-hidden="true"></i><span class="wy_name">相机</span><code class="wy_code">fa-camera</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-compass" aria-hidden="true"></i><span class="wy_name">罗盘</span><code class="wy_code">fa-compass</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-moon" aria-hidden="true"></i><span class="wy_name">月亮</span><code class="wy_code">fa-moon</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span class="wy_name">叶片</span><code class="wy_code">fa-leaf</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-crown" aria-hidden="true"></i><span class="wy_name">王冠</span><code class="wy_code">fa-crown</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-feather" aria-hidden="true"></i><span class="wy_name">羽毛</span><code class="wy_code">fa-feather</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-gem" aria-hidden="true"></i><span class="wy_name">宝石</span><code class="wy_code">fa-gem</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-fire" aria-hidden="true"></i><span class="wy_name">火焰</span><code class="wy_code">fa-fire</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-music" aria-hidden="true"></i><span class="wy_name">音符</span><code class="wy_code">fa-music</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span class="wy_name">热饮</span><code class="wy_code">fa-mug-hot</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span class="wy_name">纸飞机</span><code class="wy_code">fa-paper-plane</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-cloud-sun" aria-hidden="true"></i><span class="wy_name">晴间多云</span><code class="wy_code">fa-cloud-sun</code></li>
+          <li class="wy_tile"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span class="wy_name">魔法棒</span><code class="wy_code">fa-wand-magic-sparkles</code></li>
+        </ul>
+      </section>
+
+      <section class="wy_note" aria-labelledby="wy_noteTitle">
+        <div>
+          <h2 id="wy_noteTitle">它为什么长得像文字</h2>
+          <p>图标没有自己的图片文件，它是字体里的一个编码。字体加载完成后，浏览器把它当作字符画出来，所以 CSS 的字号、颜色、描边都能直接作用在图标上。</p>
+          <p>代价是整套字体始终一起加载：这页的 solid 字体约 158 KB，哪怕只用到一个心形，整个字体文件也会被下载。图标也不能像 SVG 那样分区域上色。</p>
+        </div>
+        <pre class="wy_snippet"><code>&lt;i class="fa-solid fa-heart"&gt;&lt;/i&gt;
+
+/* 尺寸与墨色都由字体控制 */
+.wy_tile i {
+  font-size: 38px;
+  color: <b>#2b3fa6</b>;
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="wy_foot">
+      <nav aria-label="页面导航">
+        <a href="./index.html">返回首页 index.html</a>
+        <a href="./iconfont-2.html">看 Lucide 的 SVG 版 →</a>
+      </nav>
+      <span>钱昱同 · 高级网页设计 · 2026</span>
+    </footer>
+  </div>
+</body>
+</html>
